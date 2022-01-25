@@ -1,5 +1,5 @@
 {
-	"private": true,
+	"private": false,
 	"author": "Nayeem",
 	"scripts": {
 		"dev": "next dev",
