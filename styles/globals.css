@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+}
+@layer components {
+	.nav__list {
+		@apply p-5;
+	}
+
+	.nav__item {
+		@apply text-2xl
+		text-white
+		group-hover:text-cyan-400;
+	}
+
+	.nav__sub-menu {
+		@apply hidden 
+		group-hover:block
+		absolute
+	    bg-black
+		text-white w-48 
+		top-[4.5rem]
+		p-5 rounded-lg
+		shadow-2xl;
+	}
+}
+@layer utilities {
+}
