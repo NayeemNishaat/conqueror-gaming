@@ -6,24 +6,42 @@
 }
 @layer components {
 	.nav__list {
-		@apply p-5;
+		@apply self-start
+		md:self-auto;
 	}
 
 	.nav__item {
 		@apply text-2xl
-		text-white
-		group-hover:text-cyan-400;
+		text-white;
 	}
 
 	.nav__sub-menu {
-		@apply hidden 
+		@apply md:absolute
+		hidden
+		text-white w-48
 		group-hover:block
-		absolute
-	    bg-black
-		text-white w-48 
-		top-[4.5rem]
-		p-5 rounded-lg
-		shadow-2xl;
+		border-t-[0.3rem]
+		border-transparent
+		top-[3rem];
+	}
+
+	/* Remark: Link Animation */
+	.lnk {
+		@apply relative
+		cursor-pointer
+		py-2.5
+		before:absolute
+		before:h-0.5
+		md:before:bottom-2
+		before:top-10
+		before:bg-[#1cc5dc]
+		before:transition-all
+		before:duration-500
+		before:w-0
+		before:right-0
+		hover:before:left-0
+		hover:before:right-auto
+		hover:before:w-full;
 	}
 }
 @layer utilities {
