@@ -3,75 +3,39 @@ import Link from "next/link";
 import { useState } from "react";
 
 function Header() {
-	// const [subMenuOpen, setSubMenuOpen] = useState(false);
 	const [currEl, setCurrEl] = useState(null);
 
 	function setSubMenuHeightHandler(e) {
 		document.querySelectorAll(".js__sub-menu").forEach((el) => {
 			el.style.maxHeight = 0;
+			const right =
+				el.closest("li").clientWidth -
+				el.closest("li").querySelector("h3").clientWidth;
+			el.closest("li").style.setProperty("--left", "auto");
+			// Note: document.documentElement is the :root element!
+			el.closest("li").style.setProperty(
+				"--right",
+				`${right}px`
+			);
+			el.closest("li").style.setProperty(
+				"--link-animation-width",
+				`0px`
+			);
 		});
-		// setSubMenuOpen(false);
-
-		const target = e.target
-			.closest("li")
-			.querySelector(".js__sub-menu");
-
-		const right =
-			e.target.closest("li").clientWidth - e.target.clientWidth;
-		// document.documentElement.style.setProperty(
-		// 	"--link-animation-width",
-		// 	"0"
-		// );
-		e.target
-			.closest("li")
-			.style.setProperty("--link-animation-width", `0`);
-		document.documentElement.style.setProperty("--left", "auto");
-		document.documentElement.style.setProperty(
-			"--right",
-			`${right}px`
-		);
-		// target.style.maxHeight = "0";
 
 		if (currEl !== e.target) {
-			// if (subMenuOpen) {
-			// document.documentElement.style.setProperty(
-			// 	"--link-animation-width",
-			// 	"0"
-			// );
-			// document.documentElement.style.setProperty(
-			// 	"--left",
-			// 	"auto"
-			// );
-			// document.documentElement.style.setProperty(
-			// 	"--right",
-			// 	`${right}px`
-			// );
-			// target.style.maxHeight = "0";
-			// console.log(45);
-			// } else {
-			// console.log(e.target.closest("li").style);
-
-			// console.log(e.target.style.getProperty());
-
-			document.documentElement.style.setProperty(
-				"--left",
-				"0px"
-			);
+			e.target.closest("li").style.setProperty("--left", "0px");
 			const linkAnimationWidth = e.target.clientWidth;
-			// const el = e.target.closest("li");
 			e.target
 				.closest("li")
 				.style.setProperty(
 					"--link-animation-width",
 					`${linkAnimationWidth}px`
 				);
-			// document.documentElement.style.setProperty(
-			// 	"--link-animation-width",
-			// 	`${linkAnimationWidth}px`
-			// );
-
-			target.style.maxHeight = "100vh";
-			// }
+			e.target
+				.closest("li")
+				.querySelector(".js__sub-menu").style.maxHeight =
+				"100vh";
 			setCurrEl(e.target);
 		} else setCurrEl(null);
 	}

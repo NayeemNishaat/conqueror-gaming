@@ -8,9 +8,9 @@
 	}
 
 	:root {
-		--link-animation-width: 0;
+		/* --link-animation-width: 0;
 		--left: 0;
-		--right: auto;
+		--right: auto; */
 	}
 }
 @layer components {
@@ -39,6 +39,8 @@
 	/* Remark: Link Animation */
 	.lnk {
 		--link-animation-width: 0;
+		--left: 0;
+		--right: auto;
 		@apply relative
 		py-2.5
 		before:absolute
