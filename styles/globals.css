@@ -38,6 +38,7 @@
 
 	/* Remark: Link Animation */
 	.lnk {
+		--link-animation-width: 0;
 		@apply relative
 		py-2.5
 		before:absolute
