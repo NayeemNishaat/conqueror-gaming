@@ -55,7 +55,9 @@
 		before:w-[var(--link-animation-width)]
 		md:before:w-0
 		md:before:right-0
+		md:before:left-auto
 		md:hover:before:left-0
+		md:hover:before:right-auto
 		md:hover:before:w-full;
 	}
 }
