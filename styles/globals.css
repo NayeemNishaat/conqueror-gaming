@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+	.disable-tap-highlighter {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	:root {
+		--link-animation-width: 0;
+		--left: 0;
+		--right: auto;
+	}
 }
 @layer components {
 	.nav__list {
@@ -12,14 +21,16 @@
 
 	.nav__item {
 		@apply text-2xl
+		inline-block
+		cursor-pointer
 		text-white;
 	}
 
 	.nav__sub-menu {
 		@apply md:absolute
-		hidden
 		text-white w-48
-		group-hover:block
+		md:hidden
+		md:group-hover:block
 		border-t-[0.3rem]
 		border-transparent
 		top-[3rem];
@@ -28,7 +39,6 @@
 	/* Remark: Link Animation */
 	.lnk {
 		@apply relative
-		cursor-pointer
 		py-2.5
 		before:absolute
 		before:h-0.5
@@ -37,11 +47,13 @@
 		before:bg-[#1cc5dc]
 		before:transition-all
 		before:duration-500
-		before:w-0
-		before:right-0
-		hover:before:left-0
-		hover:before:right-auto
-		hover:before:w-full;
+		before:left-[var(--left)]
+		before:right-[var(--right)] 
+		before:w-[var(--link-animation-width)]
+		md:before:w-0
+		md:before:right-0
+		md:hover:before:left-0
+		md:hover:before:w-full;
 	}
 }
 @layer utilities {
