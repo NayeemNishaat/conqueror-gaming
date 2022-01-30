@@ -14,6 +14,9 @@ function CardItem(props) {
 						height={350}
 					/>
 				</a>
+				<p className="text-center p-3 font-semibold text-amber-600">
+					{props.product.name}
+				</p>
 			</div>
 		</div>
 	);
