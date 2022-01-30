@@ -34,7 +34,8 @@ export const getStaticProps = async (ctx) => {
 				amount: fc.amount,
 				price: fc.price,
 				image: fc.image,
-				details: fc.details
+				details: fc.details,
+				type: "currency"
 			})),
 			card: featuredCard.map((fcr) => ({
 				_id: fcr._id.toString(),
@@ -42,7 +43,8 @@ export const getStaticProps = async (ctx) => {
 				amount: fcr.amount,
 				price: fcr.price,
 				image: fcr.image,
-				details: fcr.details
+				details: fcr.details,
+				type: "gift-card"
 			}))
 		}
 	};
