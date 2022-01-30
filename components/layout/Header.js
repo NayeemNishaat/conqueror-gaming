@@ -52,7 +52,7 @@ function Header() {
 	}
 
 	return (
-		<header className="bg-violet-800">
+		<header className="bg-violet-800 z-50 relative">
 			<nav className="container mx-auto">
 				<div className="flex justify-between items-center h-[13vh] px-4 md:px-0">
 					<Link href="/">
@@ -72,7 +72,7 @@ function Header() {
 					>
 						<use xlinkHref="/images/sprite.svg#menu"></use>
 					</svg>
-					<ul className="js__side-drawer md:justify-evenly md:w-[70%] w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
+					<ul className="js__side-drawer md:justify-evenly md:w-[70%] w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:relative md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
 						<li className="nav__list group lnk">
 							<h3
 								className="nav__item"
@@ -109,7 +109,7 @@ function Header() {
 						<li className="nav__list group lnk">
 							<h3
 								className="nav__item"
-								onClick={setSubMenuHeightHandler.bind()}
+								onClick={setSubMenuHeightHandler}
 							>
 								Gift Cards
 							</h3>
