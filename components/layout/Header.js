@@ -6,6 +6,8 @@ function Header() {
 	const [currEl, setCurrEl] = useState(null);
 
 	function setSubMenuHeightHandler(e) {
+		if (screen.width > 500) return;
+
 		document.querySelectorAll(".js__sub-menu").forEach((el) => {
 			el.style.maxHeight = 0;
 			const right =
