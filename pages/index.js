@@ -4,19 +4,13 @@ import Footer from "../components/layout/Footer";
 import Featured from "../components/featured/Featured";
 import { getFeatured } from "/lib/db";
 
-function index(props) {
+function Index(props) {
 	return (
 		<>
 			<Header />
 			<Slider />
-			<Featured
-				product={props.currency}
-				title="Featured Currencies"
-			/>
-			<Featured
-				product={props.card}
-				title="Featured Gift Cards"
-			/>
+			<Featured product={props.currency} title="Featured Currencies" />
+			<Featured product={props.card} title="Featured Gift Cards" />
 			<Footer />
 		</>
 	);
@@ -50,4 +44,4 @@ export const getStaticProps = async (ctx) => {
 	};
 };
 
-export default index;
+export default Index;

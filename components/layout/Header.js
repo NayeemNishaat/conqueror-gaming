@@ -60,7 +60,7 @@ function Header() {
 					<Link href="/">
 						<a className="flex w-[5.2rem] md:w-auto">
 							<Image
-								src="/images/logo.jpg"
+								src="/images/common/logo.jpg"
 								width={120}
 								height={60}
 								alt="Logo"
@@ -72,7 +72,7 @@ function Header() {
 						className="w-6 h-6 md:hidden fill-white"
 						onClick={switchSideDrawerHandler}
 					>
-						<use xlinkHref="/images/sprite.svg#menu"></use>
+						<use xlinkHref="/images/common/sprite.svg#menu"></use>
 					</svg>
 					<ul className="js__side-drawer md:justify-evenly md:w-[70%] w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:relative md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
 						<li className="nav__list group lnk">

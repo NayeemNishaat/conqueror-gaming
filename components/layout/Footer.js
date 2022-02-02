@@ -35,17 +35,17 @@ function Footer() {
 					<div className="w-[55%] flex justify-end gap-3">
 						<a href="#null">
 							<svg className="w-8 h-8 fill-transparent stroke-white hover:stroke-cyan-500 transition">
-								<use xlinkHref="/images/sprite.svg#twitter"></use>
+								<use xlinkHref="/images/common/sprite.svg#twitter"></use>
 							</svg>
 						</a>
 						<a href="#null">
 							<svg className="w-8 h-8 fill-transparent stroke-white hover:stroke-cyan-500 transition">
-								<use xlinkHref="/images/sprite.svg#facebook"></use>
+								<use xlinkHref="/images/common/sprite.svg#facebook"></use>
 							</svg>
 						</a>
 						<a href="#null">
 							<svg className="w-8 h-8 stroke-white fill-white hover:stroke-cyan-500 transition">
-								<use xlinkHref="/images/sprite.svg#instagram"></use>
+								<use xlinkHref="/images/common/sprite.svg#instagram"></use>
 							</svg>
 						</a>
 					</div>

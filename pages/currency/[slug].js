@@ -1,26 +1,26 @@
 import ProductDetails from "../../components/product-details/ProductDetails";
 import { getSpecificProduct, getPID } from "../../lib/db";
 
-function currencyDetailsContainer() {
-	return <ProductDetails />;
+function currencyDetailsContainer(props) {
+	return <ProductDetails product={props.product} />;
 }
 
 export const getStaticProps = async (ctx) => {
-	const product = await getSpecificProduct(
+	const [product] = await getSpecificProduct(
 		"currency",
 		ctx.params.slug
 	);
 
 	return {
 		props: {
-			product: product.map((p) => ({
-				_id: p._id.toString(),
-				name: p.name,
-				amount: p.amount,
-				price: p.price,
-				image: p.price,
-				details: p.details
-			}))
+			product: {
+				_id: product._id.toString(),
+				name: product.name,
+				amount: product.amount,
+				price: product.price,
+				image: product.image,
+				details: product.details
+			}
 		}
 	};
 };
