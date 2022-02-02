@@ -34,7 +34,7 @@ function ProductDetails(props) {
 
 	return (
 		<section>
-			<div className="flex container mx-auto rounded-xl mt-10 bg-gray-200 p-10">
+			<div className="flex gap-10 container mx-auto rounded-xl mt-10 bg-gray-200 p-10">
 				<div className="flex-1 flex flex-col items-center">
 					<div>
 						<Image
@@ -100,7 +100,7 @@ function ProductDetails(props) {
 						Select Payment Method:
 					</p>
 					<div className="flex gap-5 justify-center">
-						<figure className="cursor-pointer">
+						<figure>
 							<input
 								type="radio"
 								defaultChecked
@@ -112,7 +112,7 @@ function ProductDetails(props) {
 							/>
 							<label
 								htmlFor="bkash"
-								className="flex flex-col items-center peer-checked:ring-2 peer-checked:ring-rose-600 rounded-xl"
+								className="flex flex-col items-center peer-checked:ring-2 cursor-pointer peer-checked:ring-rose-600 rounded-xl"
 							>
 								<svg className="w-40 h-20">
 									<use xlinkHref="/images/common/sprite.svg#bkash"></use>
@@ -122,7 +122,7 @@ function ProductDetails(props) {
 								</figcaption>
 							</label>
 						</figure>
-						<figure className="cursor-pointer">
+						<figure>
 							<input
 								type="radio"
 								name="pay-method"
@@ -133,7 +133,7 @@ function ProductDetails(props) {
 							/>
 							<label
 								htmlFor="card"
-								className="flex flex-col items-center peer-checked:ring-2 peer-checked:ring-rose-600 rounded-xl"
+								className="flex flex-col items-center peer-checked:ring-2 cursor-pointer peer-checked:ring-rose-600 rounded-xl"
 							>
 								<svg className="w-40 h-20 py-2.5">
 									<use xlinkHref="/images/common/sprite.svg#card"></use>
