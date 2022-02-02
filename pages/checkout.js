@@ -27,12 +27,8 @@ export default function App() {
 	if (context.product.payMethod === "bkash")
 		return <p>Payment Method is not Supported Yet!</p>;
 
-	const appearance = {
-		theme: "stripe"
-	};
 	const options = {
-		clientSecret,
-		appearance
+		clientSecret
 	};
 
 	return (

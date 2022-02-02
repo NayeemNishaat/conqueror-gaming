@@ -5,7 +5,7 @@ import {
 	useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm(props) {
 	const stripe = useStripe();
 	const elements = useElements();
 
@@ -58,8 +58,14 @@ export default function CheckoutForm() {
 			elements,
 			confirmParams: {
 				return_url: "http://localhost:3000/success"
-			}
+			},
+			redirect: "if_required"
 		});
+
+		if (!error) {
+			setIsLoading(false);
+			return setMessage("Payment Successful");
+		}
 
 		if (error.type === "card_error" || error.type === "validation_error") {
 			setMessage(error.message);
