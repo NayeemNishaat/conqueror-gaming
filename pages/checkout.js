@@ -9,9 +9,8 @@ import CheckoutForm from "../components/form/CheckoutForm";
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 export default function App() {
-	const context = useContext(ProductContext);
-
 	const [clientSecret, setClientSecret] = useState();
+	const context = useContext(ProductContext);
 
 	useEffect(() => {
 		fetch("/api/checkout", {
@@ -25,6 +24,9 @@ export default function App() {
 			.then((data) => setClientSecret(data.clientSecret));
 	}, [context]);
 
+	if (context.product.payMethod === "bkash")
+		return <p>Payment Method is not Supported Yet!</p>;
+
 	const appearance = {
 		theme: "stripe"
 	};
@@ -34,12 +36,12 @@ export default function App() {
 	};
 
 	return (
-		<div className="App">
+		<section className="App w-screen h-screen flex items-center justify-center">
 			{clientSecret && (
 				<Elements options={options} stripe={stripePromise}>
 					<CheckoutForm />
 				</Elements>
 			)}
-		</div>
+		</section>
 	);
 }
