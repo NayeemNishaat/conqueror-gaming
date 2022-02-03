@@ -8,6 +8,7 @@ function Slide(props) {
 				src={props.src}
 				alt="Slider Image"
 				layout="fill"
+				objectFit="cover"
 			/>
 		</div>
 	);

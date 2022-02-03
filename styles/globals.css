@@ -65,7 +65,7 @@
 	/* Segment: Stripe */
 	form {
 		@apply md:w-[30vw]
-		w-[80vw]
+		w-full
 		md:min-w-[500px]
 		min-w-[initial]
 		shadow-2xl

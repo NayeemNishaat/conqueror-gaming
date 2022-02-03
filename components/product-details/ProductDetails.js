@@ -33,8 +33,8 @@ function ProductDetails(props) {
 	};
 
 	return (
-		<section>
-			<div className="flex gap-10 container mx-auto rounded-xl mt-10 bg-gray-200 p-10">
+		<section className="bg-gray-200">
+			<div className="flex md:flex-row flex-col gap-10 container rounded-xl  md:p-10 pt-4 ">
 				<div className="flex-1 flex flex-col items-center">
 					<div>
 						<Image
@@ -56,12 +56,12 @@ function ProductDetails(props) {
 						<div className="flex items-center gap-5">
 							<label
 								htmlFor="uid"
-								className="text-lg font-semibold w-24"
+								className="text-lg font-semibold w-[55%]"
 							>
 								Enter UID
 							</label>
 							<input
-								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3"
+								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3 w-full"
 								id="uid"
 								type="text"
 							/>
@@ -69,12 +69,12 @@ function ProductDetails(props) {
 						<div className="flex items-center gap-5">
 							<label
 								htmlFor="email"
-								className="text-lg font-semibold w-24"
+								className="text-lg font-semibold  w-[55%]"
 							>
 								Enter Email
 							</label>
 							<input
-								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3"
+								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3 w-full"
 								id="email"
 								type="email"
 							/>
@@ -99,7 +99,7 @@ function ProductDetails(props) {
 					<p className="text-lg font-semibold my-5">
 						Select Payment Method:
 					</p>
-					<div className="flex gap-5 justify-center">
+					<div className="flex md:flex-row flex-col gap-5 justify-center items-center">
 						<figure>
 							<input
 								type="radio"
@@ -144,7 +144,7 @@ function ProductDetails(props) {
 							</label>
 						</figure>
 					</div>
-					<div className="text-center mt-10">
+					<div className="text-center mt-10 mb-10">
 						<a
 							className="bg-[#44d62c] inline-block py-2 px-3 rounded-sm hover:bg-[#71f85c] transition text-xl font-semibold cursor-pointer"
 							onClick={btnClickHandler}

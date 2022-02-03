@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function CardItem(props) {
 	return (
-		<div className="w-[20%]">
+		<div className="lg:w-[20%] md:w-[40%] w-full">
 			<div className="rounded-lg overflow-hidden shadow-2xl">
 				<Link href={`/${props.product.type}/${props.product._id}`}>
 					<a>

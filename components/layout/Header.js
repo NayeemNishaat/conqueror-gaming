@@ -15,14 +15,8 @@ function Header() {
 				el.closest("li").querySelector("h3").clientWidth;
 			el.closest("li").style.setProperty("--left", "auto");
 			// Note: document.documentElement is the :root element!
-			el.closest("li").style.setProperty(
-				"--right",
-				`${right}px`
-			);
-			el.closest("li").style.setProperty(
-				"--link-animation-width",
-				`0px`
-			);
+			el.closest("li").style.setProperty("--right", `${right}px`);
+			el.closest("li").style.setProperty("--link-animation-width", `0px`);
 		});
 
 		if (currEl !== e.target) {
@@ -36,8 +30,7 @@ function Header() {
 				);
 			e.target
 				.closest("li")
-				.querySelector(".js__sub-menu").style.maxHeight =
-				"100vh";
+				.querySelector(".js__sub-menu").style.maxHeight = "100vh";
 			setCurrEl(e.target);
 		} else setCurrEl(null);
 	}
@@ -47,6 +40,7 @@ function Header() {
 		// e.target.nextElementSibling.classList.toggle(
 		// 	"translate-x-full"
 		// );
+		document.querySelector("body").classList.toggle("overflow-hidden");
 
 		document
 			.querySelector(".js__side-drawer")
@@ -55,10 +49,10 @@ function Header() {
 
 	return (
 		<header className="bg-violet-800 z-50 relative">
-			<nav className="container mx-auto">
+			<nav className="container">
 				<div className="flex justify-between items-center h-[13vh] px-4 md:px-0">
 					<Link href="/">
-						<a className="flex w-[5.2rem] md:w-auto">
+						<a className="flex w-[5.2rem] md:w-24 lg:w-auto">
 							<Image
 								src="/images/common/logo.jpg"
 								width={120}
@@ -143,9 +137,7 @@ function Header() {
 						</li>
 						<li className="nav__list lnk">
 							<Link href="/games">
-								<a className="nav__item">
-									Razor Gold
-								</a>
+								<a className="nav__item">Razor Gold</a>
 							</Link>
 						</li>
 						<li className="nav__list lnk">

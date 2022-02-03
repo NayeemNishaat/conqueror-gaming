@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/form/CheckoutForm";
+import { useRouter } from "next/router";
 // import "./App.css";
 
 const stripePromise = loadStripe(
@@ -13,6 +14,8 @@ const stripePromise = loadStripe(
 export default function App() {
 	const [clientSecret, setClientSecret] = useState();
 	const context = useContext(ProductContext);
+	const router = useRouter();
+
 	useEffect(() => {
 		fetch("/api/checkout", {
 			method: "POST",
@@ -25,8 +28,10 @@ export default function App() {
 			.then((data) => setClientSecret(data.clientSecret));
 	}, [context.product]);
 
-	if (context.product?.payMethod === "bkash" || !context.product)
-		return <p>Payment Method is not Supported Yet!</p>;
+	if (context.product?.payMethod === "bkash")
+		return <p className="h-screen">Payment Method is not Supported Yet!</p>;
+
+	if (!context.product) router.back;
 
 	const options = {
 		clientSecret

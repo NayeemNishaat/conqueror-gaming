@@ -66,7 +66,7 @@ export default function CheckoutForm() {
 		if (!error) {
 			setIsLoading(false);
 			return setMessage(
-				<p className="my-5 font-semibold text-2xl text-green-500">
+				<p className="my-5 font-semibold text-xl text-green-500">
 					Payment Successful
 				</p>
 			);
@@ -74,13 +74,13 @@ export default function CheckoutForm() {
 
 		if (error.type === "card_error" || error.type === "validation_error") {
 			setMessage(
-				<p className="my-5 font-semibold text-2xl text-red-700">
+				<p className="my-5 font-semibold text-xl text-red-700">
 					{error.message}
 				</p>
 			);
 		} else {
 			setMessage(
-				<p className="my-5 font-bold text-2xl text-red-700">
+				<p className="my-5 font-bold text-xl text-red-700">
 					Couldn&apos;t Complete Your Payment!
 				</p>
 			);
@@ -104,7 +104,7 @@ export default function CheckoutForm() {
 			{message && (
 				<div id="payment-message">
 					{message}
-					<button className="bg-red-600">
+					<button className="bg-red-600 mb-10">
 						<Link href="/">Go Back</Link>
 					</button>
 				</div>
