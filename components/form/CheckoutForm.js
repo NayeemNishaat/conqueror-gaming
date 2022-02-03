@@ -4,8 +4,9 @@ import {
 	useStripe,
 	useElements
 } from "@stripe/react-stripe-js";
+import Link from "next/link";
 
-export default function CheckoutForm(props) {
+export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 
@@ -64,13 +65,25 @@ export default function CheckoutForm(props) {
 
 		if (!error) {
 			setIsLoading(false);
-			return setMessage("Payment Successful");
+			return setMessage(
+				<p className="my-5 font-semibold text-2xl text-green-500">
+					Payment Successful
+				</p>
+			);
 		}
 
 		if (error.type === "card_error" || error.type === "validation_error") {
-			setMessage(error.message);
+			setMessage(
+				<p className="my-5 font-semibold text-2xl text-red-700">
+					{error.message}
+				</p>
+			);
 		} else {
-			setMessage("An unexpected error occured.");
+			setMessage(
+				<p className="my-5 font-bold text-2xl text-red-700">
+					Couldn&apos;t Complete Your Payment!
+				</p>
+			);
 		}
 
 		setIsLoading(false);
@@ -88,7 +101,15 @@ export default function CheckoutForm(props) {
 					)}
 				</span>
 			</button>
-			{message && <div id="payment-message">{message}</div>}
+			{message && (
+				<div id="payment-message">
+					{/* <p className="my-5 font-semibold text-xl">{message}</p> */}
+					{message}
+					<button className="bg-red-600">
+						<Link href="/">Go Back</Link>
+					</button>
+				</div>
+			)}
 		</form>
 	);
 }
