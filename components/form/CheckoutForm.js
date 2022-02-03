@@ -90,7 +90,7 @@ export default function CheckoutForm() {
 	};
 
 	return (
-		<form id="payment-form" onSubmit={handleSubmit}>
+		<form id="payment-form" className="my-10" onSubmit={handleSubmit}>
 			<PaymentElement id="payment-element" />
 			<button disabled={isLoading || !stripe || !elements} id="submit">
 				<span id="button-text">
@@ -104,7 +104,7 @@ export default function CheckoutForm() {
 			{message && (
 				<div id="payment-message">
 					{message}
-					<button className="bg-red-600 mb-10">
+					<button className="bg-red-600">
 						<Link href="/">Go Back</Link>
 					</button>
 				</div>
