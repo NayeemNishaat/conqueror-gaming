@@ -103,7 +103,6 @@ export default function CheckoutForm() {
 			</button>
 			{message && (
 				<div id="payment-message">
-					{/* <p className="my-5 font-semibold text-xl">{message}</p> */}
 					{message}
 					<button className="bg-red-600">
 						<Link href="/">Go Back</Link>

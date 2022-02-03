@@ -32,7 +32,7 @@ export default function App() {
 	};
 
 	return (
-		<section className="App w-screen h-screen flex items-center justify-center">
+		<section className="App h-screen flex items-center justify-center">
 			{clientSecret && (
 				<Elements options={options} stripe={stripePromise}>
 					<CheckoutForm />

@@ -5,9 +5,7 @@ function CardItem(props) {
 	return (
 		<div className="w-[20%]">
 			<div className="rounded-lg overflow-hidden shadow-2xl">
-				<Link
-					href={`/${props.product.type}/${props.product._id}`}
-				>
+				<Link href={`/${props.product.type}/${props.product._id}`}>
 					<a>
 						<Image
 							src={props.product.image}

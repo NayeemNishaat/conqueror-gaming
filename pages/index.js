@@ -1,17 +1,13 @@
-import Header from "../components/layout/Header";
 import Slider from "../components/slider/Slider";
-import Footer from "../components/layout/Footer";
 import Featured from "../components/featured/Featured";
 import { getFeatured } from "/lib/db";
 
 function Index(props) {
 	return (
 		<>
-			<Header />
 			<Slider />
 			<Featured product={props.currency} title="Featured Currencies" />
 			<Featured product={props.card} title="Featured Gift Cards" />
-			<Footer />
 		</>
 	);
 }
