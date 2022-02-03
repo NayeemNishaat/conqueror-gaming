@@ -6,12 +6,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/form/CheckoutForm";
 // import "./App.css";
 
-const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+const stripePromise = loadStripe(
+	"pk_test_51KP2GaB0T1ufhduWZxQFg7NmumKWDQ0Ld74n64aGmPaEqY9lD1MZPp2xnUpe0bsXtwLN3YFFCZkrF3JqMFzQOOG900iBQuIu17"
+);
 
 export default function App() {
 	const [clientSecret, setClientSecret] = useState();
 	const context = useContext(ProductContext);
-
 	useEffect(() => {
 		fetch("/api/checkout", {
 			method: "POST",
@@ -22,9 +23,9 @@ export default function App() {
 		})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret));
-	}, [context]);
+	}, [context.product]);
 
-	if (context.product.payMethod === "bkash")
+	if (context.product?.payMethod === "bkash" || !context.product)
 		return <p>Payment Method is not Supported Yet!</p>;
 
 	const options = {

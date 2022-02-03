@@ -12,7 +12,7 @@ function Index(props) {
 	);
 }
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps = async () => {
 	const featuredCurrency = await getFeatured("currency");
 	const featuredCard = await getFeatured("card");
 
