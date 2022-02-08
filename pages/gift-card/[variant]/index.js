@@ -1,7 +1,7 @@
-import { getVariant, getProductsOfVariant } from "../../../lib/db";
+import { getFields, getProductsOfVariant } from "../../../lib/db";
 import CardList from "../../../components/card/CardList";
 
-function CurrencyVarient(props) {
+function giftCardVarient(props) {
 	return (
 		<section className="py-20 bg-gray-300">
 			<CardList product={props.product} />
@@ -9,6 +9,7 @@ function CurrencyVarient(props) {
 	);
 }
 
+// Error: You can not use getStaticProps or getStaticPaths with getServerSideProps.
 export const getStaticProps = async (ctx) => {
 	const variant = ctx.params.variant;
 	const products = await getProductsOfVariant("gift-card", variant);
@@ -30,11 +31,11 @@ export const getStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths = async () => {
-	const variant = await getVariant("gift-card");
+	const fields = await getFields("gift-card", "variant");
 
-	const paths = variant.map((vrint) => ({
+	const paths = fields.map((field) => ({
 		params: {
-			variant: vrint.variant
+			variant: field.variant
 		}
 	}));
 
@@ -44,4 +45,4 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export default CurrencyVarient;
+export default giftCardVarient;

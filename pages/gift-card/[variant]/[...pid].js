@@ -1,12 +1,12 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
-import { getSpecificProduct, getPID } from "../../../lib/db";
+import { getSpecificProduct, getFields } from "../../../lib/db";
 
-function GiftCardDetailsContainer(props) {
+function giftCardDetailsContainer(props) {
 	return <ProductDetails product={props.product} />;
 }
 
 export const getStaticProps = async (ctx) => {
-	const [product] = await getSpecificProduct("gift-card", ctx.params.slug);
+	const [product] = await getSpecificProduct("gift-card", ctx.params.pid[0]);
 
 	return {
 		props: {
@@ -22,12 +22,12 @@ export const getStaticProps = async (ctx) => {
 	};
 };
 
-export const getStaticPaths = async () => {
-	const id = await getPID("gift-card");
-
-	const paths = id.map((id) => ({
+export const getStaticPaths = async (ctx) => {
+	const fields = await getFields("gift-card", "variant");
+	const paths = fields.map((field) => ({
 		params: {
-			slug: id._id.toString()
+			variant: field.variant,
+			pid: [field._id.toString()]
 		}
 	}));
 
@@ -37,4 +37,4 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export default GiftCardDetailsContainer;
+export default giftCardDetailsContainer;

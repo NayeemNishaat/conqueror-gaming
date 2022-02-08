@@ -21,6 +21,7 @@ export const getStaticProps = async () => {
 				price: currency.price,
 				image: currency.image,
 				details: currency.details,
+				variant: currency.variant,
 				type: "currency"
 			}))
 		}

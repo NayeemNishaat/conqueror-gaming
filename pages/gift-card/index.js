@@ -10,16 +10,17 @@ function GiftCard(props) {
 }
 
 export const getStaticProps = async () => {
-	const allCard = await getAllProducts("gift-card");
+	const giftCards = await getAllProducts("gift-card");
 	return {
 		props: {
-			product: allCard.map((card) => ({
-				_id: card._id.toString(),
-				name: card.name,
-				amount: card.amount,
-				price: card.price,
-				image: card.image,
-				details: card.details,
+			product: giftCards.map((giftCard) => ({
+				_id: giftCard._id.toString(),
+				name: giftCard.name,
+				amount: giftCard.amount,
+				price: giftCard.price,
+				image: giftCard.image,
+				details: giftCard.details,
+				variant: giftCard.variant,
 				type: "gift-card"
 			}))
 		}
