@@ -1,5 +1,5 @@
-import ProductDetails from "../../components/product-details/ProductDetails";
-import { getSpecificProduct, getPID } from "../../lib/db";
+import ProductDetails from "../../../components/product-details/ProductDetails";
+import { getSpecificProduct, getPID } from "../../../lib/db";
 
 function GiftCardDetailsContainer(props) {
 	return <ProductDetails product={props.product} />;

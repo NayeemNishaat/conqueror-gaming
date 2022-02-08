@@ -1,4 +1,4 @@
-import { getAllDocuments } from "../../lib/db";
+import { getAllProducts } from "../../lib/db";
 import CardList from "../../components/card/CardList";
 
 function Currency(props) {
@@ -10,7 +10,7 @@ function Currency(props) {
 }
 
 export const getStaticProps = async () => {
-	const allCurrency = await getAllDocuments("currency");
+	const allCurrency = await getAllProducts("currency");
 
 	return {
 		props: {

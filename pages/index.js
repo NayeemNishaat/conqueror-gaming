@@ -1,6 +1,6 @@
 import Slider from "../components/slider/Slider";
 import Featured from "../components/featured/Featured";
-import { getFeatured } from "/lib/db";
+import { getFeaturedProducts } from "/lib/db";
 
 function Index(props) {
 	return (
@@ -13,8 +13,8 @@ function Index(props) {
 }
 
 export const getStaticProps = async () => {
-	const featuredCurrency = await getFeatured("currency");
-	const featuredCard = await getFeatured("card");
+	const featuredCurrency = await getFeaturedProducts("currency");
+	const featuredCard = await getFeaturedProducts("card");
 
 	return {
 		props: {

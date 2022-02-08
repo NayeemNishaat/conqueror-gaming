@@ -1,4 +1,4 @@
-import { getAllDocuments } from "../../lib/db";
+import { getAllProducts } from "../../lib/db";
 import CardList from "../../components/card/CardList";
 
 function GiftCard(props) {
@@ -10,7 +10,7 @@ function GiftCard(props) {
 }
 
 export const getStaticProps = async () => {
-	const allCard = await getAllDocuments("card");
+	const allCard = await getAllProducts("card");
 	return {
 		props: {
 			product: allCard.map((card) => ({
