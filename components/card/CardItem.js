@@ -16,6 +16,8 @@ function CardItem(props) {
 							// objectFit="fill" // Remark: Default fill
 							width={350}
 							height={350}
+							placeholder="blur"
+							blurDataURL="/images/common/blur.gif"
 						/>
 						<p className="text-center p-3 font-semibold text-amber-600">
 							{props.product.name}
