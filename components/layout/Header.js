@@ -79,28 +79,28 @@ function Header() {
 							<div className="js__sub-menu nav__sub-menu md:max-h-[none] transition-maxHeight duration-500 max-h-0 overflow-hidden">
 								<ul className="md:bg-black bg-white text-black md:text-white font-semibold relative z-10 p-5 rounded-lg">
 									<li>
-										<Link href="/games/game-id">
+										<Link href="/currency/pubg">
 											<a className="hover:text-cyan-400">
 												PUBG UC
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/currency/cod">
 											<a className="hover:text-cyan-400">
 												COD CP
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/currency/free-fire">
 											<a className="hover:text-cyan-400">
 												Free Fire Diamond
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/currency">
 											<a className="hover:text-cyan-400">
 												All Currencies
 											</a>
@@ -119,28 +119,28 @@ function Header() {
 							<div className="js__sub-menu nav__sub-menu md:max-h-[none] transition-maxHeight duration-500 max-h-0 overflow-hidden">
 								<ul className="md:bg-black bg-white text-black md:text-white font-semibold relative z-10 p-5 rounded-lg">
 									<li>
-										<Link href="/gift-cards/gift-cards-id">
+										<Link href="/gift-cards/play">
 											<a className="hover:text-cyan-400">
 												Google Play
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/gift-cards/amazon">
 											<a className="hover:text-cyan-400">
 												Amazon
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/gift-cards/apple">
 											<a className="hover:text-cyan-400">
 												Apple
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/games/pubg">
+										<Link href="/gift-card">
 											<a className="hover:text-cyan-400">
 												All Gift Cards
 											</a>
@@ -150,12 +150,12 @@ function Header() {
 							</div>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/games">
+							<Link href="/razor-gold">
 								<a className="nav__item">Razor Gold</a>
 							</Link>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/games">
+							<Link href="/offers">
 								<a className="nav__item">Offers</a>
 							</Link>
 						</li>

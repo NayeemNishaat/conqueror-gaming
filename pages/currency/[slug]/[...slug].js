@@ -1,15 +1,12 @@
-import ProductDetails from "../../components/product-details/ProductDetails";
-import { getSpecificProduct, getPID } from "../../lib/db";
+import ProductDetails from "../../../components/product-details/ProductDetails";
+import { getSpecificProduct, getPID } from "../../../lib/db";
 
 function currencyDetailsContainer(props) {
 	return <ProductDetails product={props.product} />;
 }
 
 export const getStaticProps = async (ctx) => {
-	const [product] = await getSpecificProduct(
-		"currency",
-		ctx.params.slug
-	);
+	const [product] = await getSpecificProduct("currency", ctx.params.slug);
 
 	return {
 		props: {
