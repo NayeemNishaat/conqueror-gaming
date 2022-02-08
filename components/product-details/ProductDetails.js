@@ -43,6 +43,8 @@ function ProductDetails(props) {
 							width={400}
 							height={300}
 							className="rounded-lg"
+							placeholder="blur"
+							blurDataURL="/images/common/blur.gif"
 						/>
 					</div>
 					<h2 className="text-2xl font-bold">{props.product.name}</h2>
