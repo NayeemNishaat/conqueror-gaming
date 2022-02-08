@@ -1,4 +1,4 @@
-import { getVariant, getProductsOfVariant } from "../../../lib/db";
+import { getFields, getProductsOfVariant } from "../../../lib/db";
 import CardList from "../../../components/card/CardList";
 
 function CurrencyVarient(props) {
@@ -31,11 +31,11 @@ export const getStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths = async () => {
-	const variant = await getVariant("currency");
+	const fields = await getFields("currency", "variant");
 
-	const paths = variant.map((vrint) => ({
+	const paths = fields.map((field) => ({
 		params: {
-			variant: vrint.variant
+			variant: field.variant
 		}
 	}));
 
