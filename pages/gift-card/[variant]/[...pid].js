@@ -6,7 +6,7 @@ function GiftCardDetailsContainer(props) {
 }
 
 export const getStaticProps = async (ctx) => {
-	const [product] = await getSpecificProduct("card", ctx.params.slug);
+	const [product] = await getSpecificProduct("gift-card", ctx.params.slug);
 
 	return {
 		props: {
@@ -23,7 +23,7 @@ export const getStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths = async () => {
-	const id = await getPID("card");
+	const id = await getPID("gift-card");
 
 	const paths = id.map((id) => ({
 		params: {

@@ -119,21 +119,21 @@ function Header() {
 							<div className="js__sub-menu nav__sub-menu md:max-h-[none] transition-maxHeight duration-500 max-h-0 overflow-hidden">
 								<ul className="md:bg-black bg-white text-black md:text-white font-semibold relative z-10 p-5 rounded-lg">
 									<li>
-										<Link href="/gift-cards/play">
+										<Link href="/gift-card/play">
 											<a className="hover:text-cyan-400">
 												Google Play
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/gift-cards/amazon">
+										<Link href="/gift-card/amazon">
 											<a className="hover:text-cyan-400">
 												Amazon
 											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="/gift-cards/apple">
+										<Link href="/gift-card/apple">
 											<a className="hover:text-cyan-400">
 												Apple
 											</a>

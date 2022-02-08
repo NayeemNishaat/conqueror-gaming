@@ -14,7 +14,7 @@ function Index(props) {
 
 export const getStaticProps = async () => {
 	const featuredCurrency = await getFeaturedProducts("currency");
-	const featuredCard = await getFeaturedProducts("card");
+	const featuredCard = await getFeaturedProducts("gift-card");
 
 	return {
 		props: {
