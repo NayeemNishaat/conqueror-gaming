@@ -18,7 +18,8 @@ export const getStaticProps = async (ctx) => {
 				image: product.image,
 				details: product.details
 			}
-		}
+		},
+		revalidate: 10
 	};
 };
 

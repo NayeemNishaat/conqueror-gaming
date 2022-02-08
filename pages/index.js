@@ -38,7 +38,8 @@ export const getStaticProps = async () => {
 				variant: fcr.variant,
 				type: "gift-card"
 			}))
-		}
+		},
+		revalidate: 10
 	};
 };
 

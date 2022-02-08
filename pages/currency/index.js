@@ -24,7 +24,8 @@ export const getStaticProps = async () => {
 				variant: currency.variant,
 				type: "currency"
 			}))
-		}
+		},
+		revalidate: 10
 	};
 };
 

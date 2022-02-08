@@ -23,7 +23,8 @@ export const getStaticProps = async () => {
 				variant: giftCard.variant,
 				type: "gift-card"
 			}))
-		}
+		},
+		revalidate: 10
 	};
 };
 

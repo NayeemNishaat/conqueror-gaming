@@ -26,7 +26,8 @@ export const getStaticProps = async (ctx) => {
 				variant: product.variant,
 				type: "gift-card"
 			}))
-		}
+		},
+		revalidate: 10
 	};
 };
 

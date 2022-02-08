@@ -26,7 +26,8 @@ export const getStaticProps = async (ctx) => {
 				variant: product.variant,
 				type: "currency"
 			}))
-		}
+		},
+		revalidate: 10
 	};
 };
 
