@@ -48,7 +48,7 @@ function Header() {
 	}
 
 	return (
-		<header className="bg-violet-800 z-50 relative">
+		<header className="bg-violet-800 z-50 sticky top-0">
 			<nav className="container">
 				<div className="flex justify-between items-center h-[13vh] px-4 md:px-0">
 					<Link href="/">

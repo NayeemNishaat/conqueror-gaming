@@ -8,7 +8,9 @@
 	}
 
 	:root {
-		/* --link-animation-width: 0;
+		scroll-behavior: smooth;
+		/* scroll-padding-top: 13vh;
+		--link-animation-width: 0;
 		--left: 0;
 		--right: auto; */
 	}

@@ -12,22 +12,17 @@ function Footer() {
 							</li>
 							<li>
 								<a className="lnk" href="#null">
-									Blog
-								</a>
-							</li>
-							<li>
-								<a className="lnk" href="#null">
-									Press
-								</a>
-							</li>
-							<li>
-								<a className="lnk" href="#null">
 									Contact
 								</a>
 							</li>
 							<li>
-								<a className="lnk" href="#null">
-									App
+								<a className="lnk" href="#">
+									Privacy Policy
+								</a>
+							</li>
+							<li>
+								<a className="lnk" href="#">
+									Terms and Conditions
 								</a>
 							</li>
 						</ul>
