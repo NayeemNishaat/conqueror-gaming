@@ -3,7 +3,7 @@ function Footer() {
 		<footer className="bg-black py-12">
 			<div className="container">
 				<div className="flex md:flex-row flex-col items-center md:items-stretch gap-8 md:gap-0">
-					<div className="md:w-[45%]">
+					<div className="md:w-[55%]">
 						<ul className="flex text-white text-xl md:justify-between justify-center gap-5 flex-wrap">
 							<li>
 								<a className="lnk" href="#null">
@@ -32,7 +32,7 @@ function Footer() {
 							</li>
 						</ul>
 					</div>
-					<div className="md:w-[55%] flex justify-end gap-3">
+					<div className="md:w-[45%] flex justify-end gap-3">
 						<a href="#null">
 							<svg className="w-8 h-8 fill-transparent stroke-white hover:stroke-cyan-500 transition">
 								<use xlinkHref="/images/common/sprite.svg#twitter"></use>

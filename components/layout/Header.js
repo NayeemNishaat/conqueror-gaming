@@ -6,7 +6,7 @@ function Header() {
 	const [currEl, setCurrEl] = useState(null);
 
 	function setSubMenuHeightHandler(e) {
-		if (screen.width > 500) return;
+		if (screen.width > 800) return;
 
 		document.querySelectorAll(".js__sub-menu").forEach((el) => {
 			el.style.maxHeight = 0;
@@ -74,28 +74,35 @@ function Header() {
 								className="nav__item"
 								onClick={setSubMenuHeightHandler}
 							>
-								Games
+								Currencies
 							</h3>
 							<div className="js__sub-menu nav__sub-menu md:max-h-[none] transition-maxHeight duration-500 max-h-0 overflow-hidden">
 								<ul className="md:bg-black bg-white text-black md:text-white font-semibold relative z-10 p-5 rounded-lg">
 									<li>
 										<Link href="/games/game-id">
 											<a className="hover:text-cyan-400">
-												PUBG
+												PUBG UC
 											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/games/pubg">
 											<a className="hover:text-cyan-400">
-												COD
+												COD CP
 											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/games/pubg">
 											<a className="hover:text-cyan-400">
-												Free Fire
+												Free Fire Diamond
+											</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/games/pubg">
+											<a className="hover:text-cyan-400">
+												All Currencies
 											</a>
 										</Link>
 									</li>
@@ -128,7 +135,14 @@ function Header() {
 									<li>
 										<Link href="/games/pubg">
 											<a className="hover:text-cyan-400">
-												Steam
+												Apple
+											</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/games/pubg">
+											<a className="hover:text-cyan-400">
+												All Gift Cards
 											</a>
 										</Link>
 									</li>
