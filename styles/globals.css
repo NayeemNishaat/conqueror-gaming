@@ -65,7 +65,7 @@
 	}
 
 	/* Segment: Stripe */
-	form {
+	#payment-form {
 		@apply md:w-[30vw]
 		w-full
 		md:min-w-[500px]

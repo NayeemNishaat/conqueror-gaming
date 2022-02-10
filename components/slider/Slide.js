@@ -9,6 +9,8 @@ function Slide(props) {
 				alt="Slider Image"
 				layout="fill"
 				objectFit="cover"
+				placeholder="blur"
+				blurDataURL="/images/common/blur.gif"
 			/>
 		</div>
 	);

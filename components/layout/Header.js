@@ -59,6 +59,8 @@ function Header() {
 								height={60}
 								alt="Logo"
 								className="rounded-full"
+								placeholder="blur"
+								blurDataURL="/images/common/blur.gif"
 							/>
 						</a>
 					</Link>
@@ -150,13 +152,13 @@ function Header() {
 							</div>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/razor-gold">
-								<a className="nav__item">Razor Gold</a>
+							<Link href="/offers">
+								<a className="nav__item">Offers</a>
 							</Link>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/offers">
-								<a className="nav__item">Offers</a>
+							<Link href="/feedback">
+								<a className="nav__item">Feedback</a>
 							</Link>
 						</li>
 					</ul>
