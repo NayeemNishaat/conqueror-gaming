@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import ProductContext from "../../store/ProductContext";
+import useStore from "../../store/store";
 
 function ProductDetails(props) {
 	const [payMethod, setPayMethod] = useState("bkash");
 	const router = useRouter();
 	const context = useContext(ProductContext);
+	const dispatch = useStore()[1];
 
 	const setPaymentHandler = function (e) {
 		setPayMethod(e.target.value);
@@ -15,6 +17,7 @@ function ProductDetails(props) {
 
 	const btnClickHandler = function () {
 		context.updateProduct(props.product, payMethod);
+		dispatch("setProduct", { product: props.product, payMethod });
 
 		// fetch("/api/checkout", {
 		// 	method: "POST",
@@ -34,7 +37,7 @@ function ProductDetails(props) {
 
 	return (
 		<section className="bg-gray-200">
-			<div className="flex md:flex-row flex-col gap-10 container rounded-xl  md:p-10 pt-4 ">
+			<div className="flex md:flex-row flex-col gap-10 container rounded-xl md:py-20">
 				<div className="flex-1 flex flex-col items-center">
 					<div>
 						<Image
@@ -146,9 +149,9 @@ function ProductDetails(props) {
 							</label>
 						</figure>
 					</div>
-					<div className="text-center mt-10 mb-10">
+					<div className="text-center mt-10">
 						<a
-							className="bg-[#44d62c] inline-block py-2 px-3 rounded-sm hover:bg-[#71f85c] transition text-xl font-semibold cursor-pointer"
+							className="bg-[#44d62c] block py-2 px-3 rounded-sm hover:bg-[#71f85c] transition text-xl font-semibold cursor-pointer"
 							onClick={btnClickHandler}
 						>
 							Checkout

@@ -8,8 +8,7 @@ module.exports = {
 			padding: {
 				DEFAULT: "1rem",
 				sm: "2rem",
-				md: "2rem",
-				lg: "2rem"
+				xl: "0rem"
 			},
 			center: true
 		},

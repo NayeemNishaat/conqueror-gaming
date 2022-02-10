@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const globalState = {};
-const listeners = [];
-const actions = {};
+let globalState = {};
+let listeners = [];
+let actions = {};
 
 export default function useStore(shouldListen = true) {
 	const setState = useState()[1];
@@ -28,8 +28,8 @@ export default function useStore(shouldListen = true) {
 	return [globalState, dispatch];
 }
 
-const initStore = function (userActions, initialState) {
+export const initStore = function (userActions, initialState) {
 	if (initialState) globalState = { ...globalState, ...initialState };
 
-	actions = { ...actions, userActions };
+	actions = { ...actions, ...userActions };
 };

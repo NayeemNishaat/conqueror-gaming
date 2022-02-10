@@ -5,7 +5,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/form/CheckoutForm";
 import { useRouter } from "next/router";
-// import "./App.css";
 
 const stripePromise = loadStripe(
 	"pk_test_51KP2GaB0T1ufhduWZxQFg7NmumKWDQ0Ld74n64aGmPaEqY9lD1MZPp2xnUpe0bsXtwLN3YFFCZkrF3JqMFzQOOG900iBQuIu17"
@@ -29,7 +28,11 @@ export default function App() {
 	}, [context.product]);
 
 	if (context.product?.payMethod === "bkash")
-		return <p className="h-screen">Payment Method is not Supported Yet!</p>;
+		return (
+			<div className="text-center text-3xl py-10 flex items-center justify-center text-red-500 font-semibold h-[60vh] bg-gray-300">
+				<p>Payment Method is not Supported Yet!</p>
+			</div>
+		);
 
 	if (!context.product) router.back;
 
