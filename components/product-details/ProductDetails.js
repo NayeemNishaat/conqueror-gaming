@@ -35,7 +35,10 @@ function ProductDetails(props) {
 		// 	search: `?payMethod=${payMethod}`
 		// });
 
-		router.push("/checkout");
+		router.push({
+			pathname: "/checkout",
+			search: `?payMethod=${payMethod}`
+		});
 	};
 
 	return (

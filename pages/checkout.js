@@ -16,7 +16,7 @@ export default function App() {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (!context.product) return router.replace("/");
+		if (!context.product) return router.replace("/"); // Important: Can not use outside useEffect() because this page is prerendered in the server. But useRouter is not available in the server. So calling it in client side by placing it insoide useEffect().
 
 		fetch("/api/checkout", {
 			method: "POST",
@@ -50,3 +50,14 @@ export default function App() {
 		</section>
 	);
 }
+
+// export const getServerSideProps = async (ctx) => {
+// 	console.log(ctx);
+// 	const { payMethod } = ctx.query;
+
+// 	return {
+// 		props: {
+// 			data: null
+// 		}
+// 	};
+// };

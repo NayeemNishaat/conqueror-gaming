@@ -6,11 +6,13 @@ import {
 } from "@stripe/react-stripe-js";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useStore from "../../store/store";
 
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 	const router = useRouter();
+	const [state] = useStore(false);
 
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +69,10 @@ export default function CheckoutForm() {
 
 		if (!error) {
 			setIsLoading(false);
-			return router.push("/success");
+			return router.push({
+				pathname: "/success",
+				search: `?product=${state.product.name}`
+			});
 			// return setMessage(
 			// 	<p className="my-5 font-semibold text-xl text-green-500">
 			// 		Payment Successful
