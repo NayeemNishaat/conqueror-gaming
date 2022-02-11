@@ -1,9 +1,6 @@
 import Slider from "../components/slider/Slider";
 import Featured from "../components/featured/Featured";
 import { getFeaturedProducts } from "/lib/db";
-import configureProductStore from "../store/product-store";
-
-configureProductStore();
 
 function Index(props) {
 	return (

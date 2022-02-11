@@ -16,6 +16,8 @@ export default function App() {
 	const router = useRouter();
 
 	useEffect(() => {
+		if (!context.product) return router.replace("/");
+
 		fetch("/api/checkout", {
 			method: "POST",
 			headers: {
@@ -25,7 +27,7 @@ export default function App() {
 		})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret));
-	}, [context.product]);
+	}, [context.product, router]);
 
 	if (context.product?.payMethod === "bkash")
 		return (
@@ -33,8 +35,6 @@ export default function App() {
 				<p>Payment Method is not Supported Yet!</p>
 			</div>
 		);
-
-	if (!context.product) router.back;
 
 	const options = {
 		clientSecret

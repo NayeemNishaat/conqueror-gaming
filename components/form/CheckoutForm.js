@@ -5,10 +5,12 @@ import {
 	useElements
 } from "@stripe/react-stripe-js";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
+	const router = useRouter();
 
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -65,11 +67,12 @@ export default function CheckoutForm() {
 
 		if (!error) {
 			setIsLoading(false);
-			return setMessage(
-				<p className="my-5 font-semibold text-xl text-green-500">
-					Payment Successful
-				</p>
-			);
+			return router.push("/success");
+			// return setMessage(
+			// 	<p className="my-5 font-semibold text-xl text-green-500">
+			// 		Payment Successful
+			// 	</p>
+			// );
 		}
 
 		if (error.type === "card_error" || error.type === "validation_error") {
