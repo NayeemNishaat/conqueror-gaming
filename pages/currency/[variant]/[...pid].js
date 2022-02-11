@@ -1,5 +1,6 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
+import { setProduct } from "../../../lib/store";
 
 function currencyDetailsContainer(props) {
 	return <ProductDetails product={props.product} />;
@@ -7,6 +8,33 @@ function currencyDetailsContainer(props) {
 
 export const getStaticProps = async (ctx) => {
 	const [product] = await getSpecificProduct("currency", ctx.params.pid[0]); // Note: Dynamic catch-all routes are always set and received as an array of dynamic routes!
+
+	setProduct({
+		_id: product._id.toString(),
+		name: product.name,
+		amount: product.amount,
+		price: product.price,
+		image: product.image,
+		details: product.details
+	});
+
+	// Remark: Fetch inside getStaticProps()
+	// fetch("http://localhost:3000/api/product", {
+	// 	method: "POST",
+	// 	headers: {
+	// 		"Content-Type": "application/json"
+	// 	},
+	// 	body: JSON.stringify({
+	// 		product: {
+	// 			_id: product._id.toString(),
+	// 			name: product.name,
+	// 			amount: product.amount,
+	// 			price: product.price,
+	// 			image: product.image,
+	// 			details: product.details
+	// 		}
+	// 	})
+	// });
 
 	return {
 		props: {
@@ -23,7 +51,7 @@ export const getStaticProps = async (ctx) => {
 	};
 };
 
-export const getStaticPaths = async (ctx) => {
+export const getStaticPaths = async () => {
 	const fields = await getFields("currency", "variant");
 	const paths = fields.map((field) => ({
 		params: {

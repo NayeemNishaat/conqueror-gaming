@@ -1,15 +1,15 @@
 function Success(props) {
 	return (
 		<div className="text-center text-3xl py-10 flex items-center justify-center text-green-500 font-semibold h-[60vh] bg-gray-300">
-			<p>You payment for {props.product} is successful!</p>
+			<p>You payment for {props.productName} is successful!</p>
 		</div>
 	);
 }
 
 export const getServerSideProps = async (ctx) => {
-	const { product } = ctx.query;
+	const { productName } = ctx.query;
 
-	if (!product)
+	if (!productName)
 		return {
 			redirect: {
 				destination: "/",
@@ -19,7 +19,7 @@ export const getServerSideProps = async (ctx) => {
 
 	return {
 		props: {
-			product: product
+			productName: productName
 		}
 	};
 };

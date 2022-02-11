@@ -1,5 +1,6 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
+import { setProduct } from "../../../lib/store";
 
 function giftCardDetailsContainer(props) {
 	return <ProductDetails product={props.product} />;
@@ -7,6 +8,15 @@ function giftCardDetailsContainer(props) {
 
 export const getStaticProps = async (ctx) => {
 	const [product] = await getSpecificProduct("gift-card", ctx.params.pid[0]);
+
+	setProduct({
+		_id: product._id.toString(),
+		name: product.name,
+		amount: product.amount,
+		price: product.price,
+		image: product.image,
+		details: product.details
+	});
 
 	return {
 		props: {

@@ -1,23 +1,24 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useContext } from "react";
-import ProductContext from "../../store/ProductContext";
-import useStore from "../../store/store";
+import { setProduct } from "../../lib/store";
+// import { useContext } from "react";
+// import ProductContext from "../../store/ProductContext";
+// import useStore from "../../store/store";
 
 function ProductDetails(props) {
 	const [payMethod, setPayMethod] = useState("bkash");
 	const router = useRouter();
-	const context = useContext(ProductContext);
-	const dispatch = useStore()[1];
+	// const context = useContext(ProductContext);
+	// const dispatch = useStore()[1];
 
 	const setPaymentHandler = function (e) {
 		setPayMethod(e.target.value);
 	};
 
 	const btnClickHandler = function () {
-		context.updateProduct(props.product, payMethod);
-		dispatch("setProduct", { product: props.product, payMethod });
+		// context.updateProduct(props.product, payMethod);
+		// dispatch("setProduct", { product: props.product, payMethod });
 
 		// fetch("/api/checkout", {
 		// 	method: "POST",
@@ -25,11 +26,6 @@ function ProductDetails(props) {
 		// 		"Content-Type": "application/json"
 		// 	},
 		// 	body: JSON.stringify(props.product)
-		// });
-
-		// router.push({
-		// 	pathname: "/checkout",
-		// 	search: `?payMethod=${payMethod}`
 		// });
 
 		router.push({
