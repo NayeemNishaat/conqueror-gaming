@@ -4,9 +4,6 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import ProductContext from "../../store/ProductContext";
 import useStore from "../../store/store";
-import configureProductStore from "../../store/product-store";
-
-configureProductStore();
 
 function ProductDetails(props) {
 	const [payMethod, setPayMethod] = useState("bkash");

@@ -51,13 +51,13 @@ export default function App() {
 	);
 }
 
-// export const getServerSideProps = async (ctx) => {
-// 	console.log(ctx);
-// 	const { payMethod } = ctx.query;
+export const getServerSideProps = async (ctx) => {
+	console.log(ctx);
+	const { payMethod } = ctx.query;
 
-// 	return {
-// 		props: {
-// 			data: null
-// 		}
-// 	};
-// };
+	return {
+		props: {
+			data: null
+		}
+	};
+};
