@@ -4,6 +4,7 @@ function AuthForm(props) {
 	const [name, setName] = useState({ name: "", typed: false });
 	const [email, setEmail] = useState({ email: "", typed: false });
 	const [password, setPassword] = useState({ password: "", typed: false });
+	const [result, setResult] = useState("");
 
 	const changeHandler = (e) => {
 		if (e.target.id === "name")
@@ -14,8 +15,28 @@ function AuthForm(props) {
 			setPassword({ password: e.target.value, typed: true });
 	};
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
+		const response = await fetch("/api/sign-up", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name: name.name,
+				email: email.email,
+				password: password.password
+			})
+		});
+
+		const { message: result } = await response.json();
+		setResult(result);
+
+		setTimeout(() => setResult(""), 3000);
+
+		setName({ name: "", typed: false });
+		setEmail({ email: "", typed: false });
+		setPassword({ password: "", typed: false });
 	};
 
 	const formattedText = props.type
@@ -119,6 +140,9 @@ function AuthForm(props) {
 					/>
 				</div>
 				<div className="mt-6">{message}</div>
+				<div className="mt-6 text-[#ff0038] font-semibold text-xl">
+					{result}
+				</div>
 				<div className="mt-6">
 					<button
 						disabled={!valid}
