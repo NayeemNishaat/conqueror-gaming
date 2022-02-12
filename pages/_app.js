@@ -1,16 +1,17 @@
 import "../styles/globals.css";
-import { ProductContextProvider } from "../store/ProductContext";
 import Layout from "../components/layout/Layout";
-import configureProductStore from "../store/product-store";
+import { SessionProvider } from "next-auth/react";
+// import { ProductContextProvider } from "../store/ProductContext";
+// import configureProductStore from "../store/product-store";
 
-configureProductStore();
+// configureProductStore();
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 	return (
 		<Layout>
-			<ProductContextProvider>
-				<Component {...pageProps} />
-			</ProductContextProvider>
+			{/* <ProductContextProvider> */}
+			<Component {...pageProps} />
+			{/* </ProductContextProvider> */}
 		</Layout>
 	);
 }

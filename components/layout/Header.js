@@ -152,13 +152,18 @@ function Header() {
 							</div>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/offers">
-								<a className="nav__item">Offers</a>
+							<Link href="/feedback">
+								<a className="nav__item">Feedback</a>
 							</Link>
 						</li>
 						<li className="nav__list lnk">
-							<Link href="/feedback">
-								<a className="nav__item">Feedback</a>
+							<Link href="/auth?type=sign-in">
+								<a className="nav__item">Sign In</a>
+							</Link>
+						</li>
+						<li className="nav__list lnk">
+							<Link href="/auth?type=sign-up">
+								<a className="nav__item">Sign Up</a>
 							</Link>
 						</li>
 					</ul>
