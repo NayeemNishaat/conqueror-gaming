@@ -5,6 +5,8 @@ function Auth(props) {
 }
 
 export const getServerSideProps = async (ctx) => {
+	const { res } = ctx;
+	res.setHeader("Cache-Control", `s-maxage=30, stale-while-revalidate`);
 	const { type } = ctx.query;
 
 	return {
