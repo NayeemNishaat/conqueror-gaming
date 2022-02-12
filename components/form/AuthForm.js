@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function AuthForm(props) {
 	const [name, setName] = useState({ name: "", typed: false });
 	const [email, setEmail] = useState({ email: "", typed: false });
 	const [password, setPassword] = useState({ password: "", typed: false });
 	const [result, setResult] = useState("");
+
+	useEffect(() => {
+		return () => {
+			setName({ name: "", typed: false });
+			setEmail({ email: "", typed: false });
+			setPassword({ password: "", typed: false });
+		};
+	}, [props.type]); // Important: Note: Pretty clever!
 
 	const changeHandler = (e) => {
 		if (e.target.id === "name")
