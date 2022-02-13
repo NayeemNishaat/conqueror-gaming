@@ -27,14 +27,13 @@ export default async function handler(req, res) {
 	}
 
 	await db.collection("users").insertOne({
+		...data,
 		email: data.email.trim().toLowerCase(),
 		password: hashedPassword
 	});
 
 	client.close();
-	return res
-		.status(201)
-		.json({
-			message: "Sign Up Successful! You will be Redirected to Homepage."
-		});
+	return res.status(201).json({
+		message: "Sign Up Successful! You will be Redirected to Homepage."
+	});
 }
