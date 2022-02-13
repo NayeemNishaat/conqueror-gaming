@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function AuthForm(props) {
 	const [name, setName] = useState({ name: "", typed: false });
 	const [email, setEmail] = useState({ email: "", typed: false });
 	const [password, setPassword] = useState({ password: "", typed: false });
 	const [result, setResult] = useState("");
+	const router = useRouter();
 
 	useEffect(() => {
 		return () => {
@@ -25,28 +28,55 @@ function AuthForm(props) {
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		const response = await fetch("/api/sign-up", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				name: name.name,
+
+		const postActions = (result, redirect = true) => {
+			setResult(result);
+
+			setTimeout(() => {
+				setResult("");
+				if (redirect) router.replace("/");
+			}, 2000);
+
+			setName({ name: "", typed: false });
+			setEmail({ email: "", typed: false });
+			setPassword({ password: "", typed: false });
+		};
+
+		if (props.type === "sign-up") {
+			const response = await fetch("/api/auth/sign-up", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					name: name.name,
+					email: email.email,
+					password: password.password
+				})
+			});
+
+			const { message: result, redirect } = await response.json();
+			postActions(result, redirect);
+		}
+
+		if (props.type === "sign-in") {
+			// Important: signIn should have the first param "credentials" in order to tell nextauth that the authorization is credentials based!
+			const res = await signIn("credentials", {
+				redirect: false, // Point: Auto redirect disabled so that we can check if any error occurs or not, cause this promise always resolved.
 				email: email.email,
 				password: password.password
-			})
-		});
+			});
 
-		const { message: result } = await response.json();
-		setResult(result);
-
-		setTimeout(() => setResult(""), 3000);
-
-		setName({ name: "", typed: false });
-		setEmail({ email: "", typed: false });
-		setPassword({ password: "", typed: false });
+			if (!res.error) {
+				postActions(
+					"Sign In Successful! You will be Redirected to Homepage."
+				);
+			} else postActions("Sign In Failed!", false);
+			// Note: I could show the specific error message by using res.error! But that's bad for security purposes!
+		}
 	};
 
+	// Part: Sign Up UI
 	const formattedText = props.type
 		.split("-")
 		.map((w) => w[0].toUpperCase() + w.slice(1))
@@ -74,12 +104,16 @@ function AuthForm(props) {
 		);
 	else inputName = "";
 
+	// Part: Validation
 	const data = [{ ...name }, { ...email }, { ...password }];
 	let valid = true;
 
 	data.forEach((ob) => {
 		for (const key in ob) {
 			valid = ob[key].trim?.() !== "";
+			if (key === "name")
+				props.type === "sign-in" ? (valid = true) : null;
+
 			if (key === "email")
 				valid = ob[key].trim?.().match(/.+@.+\..+/) !== null;
 
@@ -113,7 +147,7 @@ function AuthForm(props) {
 			<h1 className="text-center text-3xl mb-4 text-white">
 				{formattedText}
 			</h1>
-			<form onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} method="POST">
 				{inputName}
 				<div className="mb-2">
 					<label
