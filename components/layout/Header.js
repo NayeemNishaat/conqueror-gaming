@@ -6,6 +6,7 @@ import { useSession, signOut } from "next-auth/react";
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
 	const { data, status } = useSession();
+	console.log(data, status);
 
 	const signOutHandler = () => {
 		signOut();
@@ -163,8 +164,7 @@ function Header() {
 							</Link>
 						</li>
 
-						{(status === "authenticated" ||
-							status === "loading") && (
+						{(data || status === "loading") && (
 							<li className="nav__list lnk">
 								<Link href="/profile">
 									<a className="nav__item">Profile</a>
@@ -172,8 +172,7 @@ function Header() {
 							</li>
 						)}
 
-						{(status === "authenticated" ||
-							status === "loading") && (
+						{(data || status === "loading") && (
 							<li className="nav__list lnk">
 								<button
 									onClick={signOutHandler}
@@ -184,7 +183,7 @@ function Header() {
 							</li>
 						)}
 
-						{status === "unauthenticated" && (
+						{!data && status !== "loading" && (
 							<li className="nav__list lnk">
 								<Link href="/auth?type=sign-in">
 									<a className="nav__item">
@@ -199,7 +198,7 @@ function Header() {
 							</li>
 						)}
 
-						{status === "unauthenticated" && (
+						{!data && status !== "loading" && (
 							<li className="nav__list lnk">
 								<Link href="/auth?type=sign-up">
 									<a className="nav__item">Sign Up</a>
