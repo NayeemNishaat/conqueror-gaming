@@ -183,8 +183,18 @@ function Header() {
 									status === "authenticated"
 										? "Sign Out"
 										: "Sign In"} */}
+										{/* Important: Point: Not doing this way because it's safe to entirely remove the unnecessary nav items from the application. */}
 										Sign In
 									</a>
+								</Link>
+							</li>
+						)}
+
+						{(status === "authenticated" ||
+							status === "loading") && (
+							<li className="nav__list lnk">
+								<Link href="/profile">
+									<a className="nav__item">Profile</a>
 								</Link>
 							</li>
 						)}
