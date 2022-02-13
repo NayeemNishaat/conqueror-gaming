@@ -100,7 +100,11 @@ export default function CheckoutForm(props) {
 	return (
 		<form id="payment-form" className="my-10" onSubmit={handleSubmit}>
 			<PaymentElement id="payment-element" />
-			<button disabled={isLoading || !stripe || !elements} id="submit">
+			<button
+				disabled={isLoading || !stripe || !elements}
+				id="submit"
+				className="btn"
+			>
 				<span id="button-text">
 					{isLoading ? (
 						<div className="spinner" id="spinner"></div>
@@ -112,7 +116,7 @@ export default function CheckoutForm(props) {
 			{message && (
 				<div id="payment-message">
 					{message}
-					<button className="bg-red-600">
+					<button className="btn bg-red-600">
 						<Link href="/">Go Back</Link>
 					</button>
 				</div>

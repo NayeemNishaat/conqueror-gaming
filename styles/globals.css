@@ -85,7 +85,7 @@
 		@apply mb-6;
 	}
 
-	button {
+	.btn {
 		@apply bg-[#5469d4]
 		hover:contrast-200
 		text-white

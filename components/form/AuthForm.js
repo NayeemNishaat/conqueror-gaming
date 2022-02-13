@@ -188,7 +188,7 @@ function AuthForm(props) {
 				<div className="mt-6">
 					<button
 						disabled={!valid}
-						className="mx-auto text-white w-auto cursor-pointer bg-[#9f5ccc] rounded border border-[#9f5ccc] py-2 px-10 hover:bg-[#873abb] hover:border-[#873abb] disabled:bg-gray-600 disabled:pointer-events-none"
+						className="btn mx-auto text-white w-auto cursor-pointer bg-[#9f5ccc] rounded border border-[#9f5ccc] py-2 px-10 hover:bg-[#873abb] hover:border-[#873abb] disabled:bg-gray-600 disabled:pointer-events-none"
 					>
 						{formattedText}
 					</button>

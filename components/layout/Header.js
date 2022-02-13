@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
+	const { data, status } = useSession();
+
+	const signOutHandler = () => {
+		signOut();
+	};
 
 	function setSubMenuHeightHandler(e) {
 		if (screen.width > 800) return;
@@ -156,16 +162,40 @@ function Header() {
 								<a className="nav__item">Feedback</a>
 							</Link>
 						</li>
-						<li className="nav__list lnk">
-							<Link href="/auth?type=sign-in">
-								<a className="nav__item">Sign In</a>
-							</Link>
-						</li>
-						<li className="nav__list lnk">
-							<Link href="/auth?type=sign-up">
-								<a className="nav__item">Sign Up</a>
-							</Link>
-						</li>
+
+						{(status === "authenticated" ||
+							status === "loading") && (
+							<li className="nav__list lnk">
+								<button
+									onClick={signOutHandler}
+									className="nav__item"
+								>
+									Sign Out
+								</button>
+							</li>
+						)}
+
+						{status === "unauthenticated" && (
+							<li className="nav__list lnk">
+								<Link href="/auth?type=sign-in">
+									<a className="nav__item">
+										{/* {status === "loading" ||
+									status === "authenticated"
+										? "Sign Out"
+										: "Sign In"} */}
+										Sign In
+									</a>
+								</Link>
+							</li>
+						)}
+
+						{status === "unauthenticated" && (
+							<li className="nav__list lnk">
+								<Link href="/auth?type=sign-up">
+									<a className="nav__item">Sign Up</a>
+								</Link>
+							</li>
+						)}
 					</ul>
 				</div>
 			</nav>
