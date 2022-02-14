@@ -13,7 +13,7 @@ function Header() {
 				switchSideDrawerHandler();
 			})
 		);
-	});
+	}, []);
 
 	const signOutHandler = () => {
 		signOut();
@@ -49,7 +49,7 @@ function Header() {
 		} else setCurrEl(null);
 	}
 
-	function switchSideDrawerHandler(e) {
+	function switchSideDrawerHandler() {
 		// Note: Sometimes e.target becomes null!
 		// e.target.nextElementSibling.classList.toggle(
 		// 	"translate-x-full"
@@ -59,6 +59,7 @@ function Header() {
 		document
 			.querySelector(".js__side-drawer")
 			.classList.toggle("translate-x-full");
+		console.log(12);
 	}
 
 	return (
