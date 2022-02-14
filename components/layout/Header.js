@@ -6,7 +6,6 @@ import { useSession, signOut } from "next-auth/react";
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
 	const { data, status } = useSession();
-	console.log(data, status);
 
 	const signOutHandler = () => {
 		signOut();
