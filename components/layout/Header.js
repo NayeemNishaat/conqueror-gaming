@@ -1,11 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
 	const { data, status } = useSession();
+
+	useEffect(() => {
+		document.querySelectorAll("li a").forEach((el) =>
+			el.addEventListener("click", () => {
+				switchSideDrawerHandler();
+			})
+		);
+	});
 
 	const signOutHandler = () => {
 		signOut();
@@ -76,7 +84,7 @@ function Header() {
 					>
 						<use xlinkHref="/images/common/sprite.svg#menu"></use>
 					</svg>
-					<ul className="js__side-drawer md:justify-evenly md:w-[70%] w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:relative md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
+					<ul className="js__side-drawer md:justify-end gap-5 w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:relative md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
 						<li className="nav__list group lnk">
 							<h3
 								className="nav__item"
@@ -163,47 +171,49 @@ function Header() {
 							</Link>
 						</li>
 
-						{(data || status === "loading") && (
-							<li className="nav__list lnk">
-								<Link href="/profile">
-									<a className="nav__item">Profile</a>
-								</Link>
-							</li>
-						)}
+						<div className="w-1/4 flex gap-5 md:flex-row flex-col">
+							{data && (
+								<li className="nav__list lnk">
+									<Link href="/profile">
+										<a className="nav__item">Profile</a>
+									</Link>
+								</li>
+							)}
 
-						{(data || status === "loading") && (
-							<li className="nav__list lnk">
-								<button
-									onClick={signOutHandler}
-									className="nav__item"
-								>
-									Sign Out
-								</button>
-							</li>
-						)}
+							{data && (
+								<li className="nav__list lnk">
+									<button
+										onClick={signOutHandler}
+										className="nav__item"
+									>
+										Sign Out
+									</button>
+								</li>
+							)}
 
-						{!data && status !== "loading" && (
-							<li className="nav__list lnk">
-								<Link href="/auth?type=sign-in">
-									<a className="nav__item">
-										{/* {status === "loading" ||
+							{!data && status !== "loading" && (
+								<li className="nav__list lnk">
+									<Link href="/auth?type=sign-in">
+										<a className="nav__item">
+											{/* {status === "loading" ||
 									status === "authenticated"
 										? "Sign Out"
 										: "Sign In"} */}
-										{/* Important: Point: Not doing this way because it's safe to entirely remove the unnecessary nav items from the application. */}
-										Sign In
-									</a>
-								</Link>
-							</li>
-						)}
+											{/* Important: Point: Not doing this way because it's safe to entirely remove the unnecessary nav items from the application. */}
+											Sign In
+										</a>
+									</Link>
+								</li>
+							)}
 
-						{!data && status !== "loading" && (
-							<li className="nav__list lnk">
-								<Link href="/auth?type=sign-up">
-									<a className="nav__item">Sign Up</a>
-								</Link>
-							</li>
-						)}
+							{!data && status !== "loading" && (
+								<li className="nav__list lnk">
+									<Link href="/auth?type=sign-up">
+										<a className="nav__item">Sign Up</a>
+									</Link>
+								</li>
+							)}
+						</div>
 					</ul>
 				</div>
 			</nav>

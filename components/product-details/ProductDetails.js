@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { setProduct } from "../../lib/store";
+// import { setProduct } from "../../lib/store";
 // import { useContext } from "react";
 // import ProductContext from "../../store/ProductContext";
 // import useStore from "../../store/store";
@@ -35,7 +35,7 @@ function ProductDetails(props) {
 	};
 
 	return (
-		<section className="bg-gray-200">
+		<section className="bg-gray-200 py-10 md:py-20">
 			<div className="flex md:flex-row flex-col gap-10 container rounded-xl md:py-20">
 				<div className="flex-1 flex flex-col items-center">
 					<div>

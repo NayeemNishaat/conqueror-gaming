@@ -3,7 +3,7 @@ import CardList from "../../../components/card/CardList";
 
 function CurrencyVarient(props) {
 	return (
-		<section className="py-20 bg-gray-300">
+		<section className="py-10 md:py-20 bg-gray-300">
 			<CardList product={props.product} />
 		</section>
 	);
