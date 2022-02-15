@@ -15,9 +15,12 @@ export default async function handler(req, res) {
 		.findOne({ email: data.userEmail });
 	const verifyOtp = await verifyHash(data.otp, storedData.otp);
 
-	if (!verifyOtp)
+	if (!verifyOtp) {
+		client.close();
 		return res.status(400).json({ message: "Failed to verify Email!" });
+	}
 
+	client.close();
 	return res.status(201).json({
 		message:
 			"Your account is verified! You will be redirected to homepage.",
