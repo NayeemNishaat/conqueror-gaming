@@ -44,14 +44,9 @@ export default async function handler(req, res) {
 		html: `Please use <b style="font:20px bold;">${otp}</b> to verify your account!`
 	};
 
-	let sendMail = true;
-	smtpTransport.sendMail(mailOptions, (error) => {
-		if (error) {
-			sendMail = false;
-		}
-	});
-	console.log(sendMail);
-	if (!sendMail) {
+	try {
+		await smtpTransport.sendMail(mailOptions);
+	} catch (err) {
 		client.close();
 		return res.status(500).json({
 			message: "Something went wrong!",
