@@ -59,7 +59,6 @@ function Header() {
 		document
 			.querySelector(".js__side-drawer")
 			.classList.toggle("translate-x-full");
-		console.log(12);
 	}
 
 	return (

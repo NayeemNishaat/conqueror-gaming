@@ -1,5 +1,5 @@
 import getClient from "../../../lib/db";
-import hashPassword from "../../../lib/auth";
+import createHash from "../../../lib/auth";
 
 export default async function handler(req, res) {
 	if (req.method !== "POST") return;
@@ -9,9 +9,9 @@ export default async function handler(req, res) {
 	if (!data)
 		return res
 			.status(422)
-			.json({ message: "Sign Up Failed!", redirect: false });
+			.json({ message: "Sign Up Failed!", redirect: "/" });
 
-	const hashedPassword = await hashPassword(data.password, 12);
+	const hashedPassword = await createHash(data.password, 12);
 
 	const client = await getClient();
 	const db = client.db();
@@ -19,21 +19,30 @@ export default async function handler(req, res) {
 		.collection("users")
 		.findOne({ email: data.email });
 
-	if (existingUser) {
+	if (existingUser?.active) {
 		client.close;
 		return res
 			.status(422)
-			.json({ message: "User Already Exist!", redirect: false });
+			.json({ message: "User Already Exist!", redirect: "/" });
 	}
 
+	// Important: Sanitizing
+	const email = data.email.trim().toLowerCase();
+
+	const otp = Math.random(9).toFixed(10).toString().slice(2);
+	const hashedOtp = await createHash(otp, 12);
+
 	await db.collection("users").insertOne({
-		...data,
-		email: data.email.trim().toLowerCase(),
-		password: hashedPassword
+		name: data.name,
+		email: email,
+		active: false,
+		password: hashedPassword,
+		otp: hashedOtp
 	});
 
 	client.close();
 	return res.status(201).json({
-		message: "Sign Up Successful! You will be Redirected to Homepage."
+		message: "Please check your Email in order to complete the Sign Up!",
+		redirect: "/verify"
 	});
 }

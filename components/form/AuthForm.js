@@ -34,7 +34,7 @@ function AuthForm(props) {
 
 			setTimeout(() => {
 				setResult("");
-				if (redirect) router.replace("/");
+				if (redirect) router.replace(redirect);
 			}, 2000);
 
 			setName({ name: "", typed: false });
@@ -54,6 +54,8 @@ function AuthForm(props) {
 					password: password.password
 				})
 			});
+
+			document.cookie = `userEmail=${email.email}`;
 
 			const { message: result, redirect } = await response.json();
 			postActions(result, redirect);
