@@ -12,13 +12,17 @@ export default async function handler(req, res) {
 
 	const storedData = await db
 		.collection("users")
-		.findOne({ email: data.userEmail });
+		.findOne({ email: data.userEmail.trim().toLowerCase() });
+
 	const verifyOtp = await verifyHash(data.otp, storedData.otp);
 
 	if (!verifyOtp) {
 		client.close();
 		return res.status(400).json({ message: "Failed to verify Email!" });
 	}
+
+	// Todo: Remove otp
+	// Todo: Set active to true
 
 	client.close();
 	return res.status(201).json({

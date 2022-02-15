@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 	const mailOptions = {
 		to: data.email,
 		subject: "Verify Account",
-		html: `Please use <b style="font:20px bolder;">${otp}</b> to verify your account!`
+		html: `Please use <b style="font:20px bold;">${otp}</b> to verify your account!`
 	};
 
 	let sendMail = true;
