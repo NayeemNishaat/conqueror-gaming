@@ -15,7 +15,9 @@ function Verify() {
 			.filter((arr) => arr[0] === "userEmail")
 			.flat();
 		setCookie(cookie);
-	}, []);
+
+		// return () => cookie.length && router.replace("/");
+	}, [router]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -42,8 +44,6 @@ function Verify() {
 
 	const changeHandler = (e) => setValue(e.target.value);
 
-	if (cookie === []) router.replace("/");
-
 	if (cookie === null)
 		return (
 			<div className="flex flex-col items-center justify-center h-[50vh]">
@@ -58,6 +58,24 @@ function Verify() {
 				<p className="text-3xl font-semibold text-green-500">Loading</p>
 			</div>
 		);
+	if (!cookie.length) {
+		router.replace("/");
+		return (
+			<div className="flex flex-col items-center justify-center h-[50vh]">
+				<div className="atom-spinner">
+					<div className="spinner-inner">
+						<div className="spinner-line"></div>
+						<div className="spinner-line"></div>
+						<div className="spinner-line"></div>
+						<div className="spinner-circle">&#9679;</div>
+					</div>
+				</div>
+				<p className="text-3xl font-semibold text-green-500">
+					Invalid Request! Redirecting to homepage!
+				</p>
+			</div>
+		);
+	}
 
 	return (
 		<section className="mx-auto my-20 w-[95%] max-w-[25rem] rounded-md bg-[#38015c] shadow-xl p-4 text-center">

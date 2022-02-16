@@ -12,8 +12,6 @@ export default async function handler(req, res) {
 			.status(422)
 			.json({ message: "Sign Up Failed!", redirect: false });
 
-	const hashedPassword = await createHash(data.password, 12);
-
 	const client = await getClient();
 	const db = client.db();
 	const existingUser = await db
@@ -54,7 +52,31 @@ export default async function handler(req, res) {
 		});
 	}
 
+	const hashedPassword = await createHash(data.password, 12);
 	const hashedOtp = await createHash(otp, 12);
+
+	if (!existingUser?.active) {
+		await db.collection("users").updateOne(
+			{
+				email: email
+			},
+			{
+				$set: {
+					name: data.name,
+					active: false,
+					password: hashedPassword,
+					otp: hashedOtp
+				}
+			}
+		);
+
+		client.close();
+		return res.status(200).json({
+			message:
+				"Please check your Email in order to complete the Sign Up!",
+			redirect: "/verify"
+		});
+	}
 
 	await db.collection("users").insertOne({
 		name: data.name,
@@ -65,7 +87,7 @@ export default async function handler(req, res) {
 	});
 
 	client.close();
-	return res.status(201).json({
+	return res.status(200).json({
 		message: "Please check your Email in order to complete the Sign Up!",
 		redirect: "/verify"
 	});

@@ -10,9 +10,9 @@ export default async function handler(req, res) {
 	const client = await getClient();
 	const db = client.db();
 
-	const storedData = await db
-		.collection("users")
-		.findOne({ email: data.userEmail.trim().toLowerCase() });
+	const email = data.userEmail.trim().toLowerCase();
+
+	const storedData = await db.collection("users").findOne({ email: email });
 
 	const verifyOtp = await verifyHash(data.otp, storedData.otp);
 
@@ -22,6 +22,13 @@ export default async function handler(req, res) {
 	}
 
 	// Todo: Remove otp
+	await db
+		.collection("users")
+		.updateOne(
+			{ email: email },
+			{ $unset: { otp: 1 }, $set: { active: true } }
+		);
+
 	// Todo: Set active to true
 
 	client.close();
