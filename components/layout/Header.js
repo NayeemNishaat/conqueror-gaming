@@ -11,6 +11,8 @@ function Header() {
 	const currencyRef = useRef(null);
 
 	useEffect(() => {
+		if (screen.width > 800) return;
+
 		document.querySelectorAll("li a").forEach((el) =>
 			el.addEventListener("click", () => {
 				switchSideDrawerHandler();
@@ -18,25 +20,6 @@ function Header() {
 		);
 
 		function handleClickOutside(event) {
-			// if (
-			// 	getCardRef.current &&
-			// 	!getCardRef.current.contains(event.target)
-			// ) {
-			// 	getCardRef.current.querySelector(
-			// 		".js__sub-menu"
-			// 	).style.maxHeight = "0px";
-			// 	setCurrEl(null);
-			// }
-			// if (
-			// 	currencyRef.current &&
-			// 	!currencyRef.current.contains(event.target)
-			// ) {
-			// 	currencyRef.current.querySelector(
-			// 		".js__sub-menu"
-			// 	).style.maxHeight = "0px";
-			// 	setCurrCurrEl(null);
-			// }
-
 			const performAction = (ref, setEl) => {
 				if (ref.current && !ref.current.contains(event.target)) {
 					ref.current.querySelector(".js__sub-menu").style.maxHeight =
