@@ -85,7 +85,7 @@ function Verify() {
 			<form onSubmit={submitHandler} method="POST">
 				<div className="mb-2">
 					<input
-						type="text"
+						type="password"
 						id="otp"
 						required
 						className="bg-[#f1e1fc] text-[#38015c] rounded border border-white w-full text-left p-1"
