@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
 
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
+	const [currCurrEl, setCurrCurrEl] = useState(null);
 	const { data, status } = useSession();
+	const getCardRef = useRef(null);
+	const currencyRef = useRef(null);
 
 	useEffect(() => {
 		document.querySelectorAll("li a").forEach((el) =>
@@ -13,17 +16,55 @@ function Header() {
 				switchSideDrawerHandler();
 			})
 		);
+
+		function handleClickOutside(event) {
+			// if (
+			// 	getCardRef.current &&
+			// 	!getCardRef.current.contains(event.target)
+			// ) {
+			// 	getCardRef.current.querySelector(
+			// 		".js__sub-menu"
+			// 	).style.maxHeight = "0px";
+			// 	setCurrEl(null);
+			// }
+			// if (
+			// 	currencyRef.current &&
+			// 	!currencyRef.current.contains(event.target)
+			// ) {
+			// 	currencyRef.current.querySelector(
+			// 		".js__sub-menu"
+			// 	).style.maxHeight = "0px";
+			// 	setCurrCurrEl(null);
+			// }
+
+			const performAction = (ref, setEl) => {
+				if (ref.current && !ref.current.contains(event.target)) {
+					ref.current.querySelector(".js__sub-menu").style.maxHeight =
+						"0px";
+					setEl(null);
+				}
+			};
+
+			performAction(getCardRef, setCurrEl);
+			performAction(currencyRef, setCurrCurrEl);
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
 	}, []);
 
 	const signOutHandler = () => {
 		signOut();
 	};
 
-	function setSubMenuHeightHandler(e) {
+	function setSubMenuHeightHandler(currEl, setCurrEl, e) {
 		if (screen.width > 800) return;
 
 		document.querySelectorAll(".js__sub-menu").forEach((el) => {
-			el.style.maxHeight = 0;
+			el.style.maxHeight = "0px";
+
 			const right =
 				el.closest("li").clientWidth -
 				el.closest("li").querySelector("h3").clientWidth;
@@ -85,10 +126,14 @@ function Header() {
 						<use xlinkHref="/images/common/sprite.svg#menu"></use>
 					</svg>
 					<ul className="js__side-drawer md:justify-end gap-5 w-full flex md:flex-row flex-col pt-4 md:pt-0 bg-black md:bg-inherit fixed md:relative md:top-auto top-[13vh] right-0 h-[87vh] md:h-auto translate-x-full md:translate-x-0 transition-transform duration-500 px-4 md:px-0">
-						<li className="nav__list group lnk">
+						<li className="nav__list group lnk" ref={currencyRef}>
 							<h3
 								className="nav__item"
-								onClick={setSubMenuHeightHandler}
+								onClick={setSubMenuHeightHandler.bind(
+									this,
+									currCurrEl,
+									setCurrCurrEl
+								)}
 							>
 								Currencies
 							</h3>
@@ -125,10 +170,14 @@ function Header() {
 								</ul>
 							</div>
 						</li>
-						<li className="nav__list group lnk">
+						<li className="nav__list group lnk" ref={getCardRef}>
 							<h3
 								className="nav__item"
-								onClick={setSubMenuHeightHandler}
+								onClick={setSubMenuHeightHandler.bind(
+									this,
+									currEl,
+									setCurrEl
+								)}
 							>
 								Gift Cards
 							</h3>

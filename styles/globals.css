@@ -23,7 +23,7 @@
 	}
 
 	.nav__item {
-		@apply text-2xl
+		@apply lg:text-2xl text-lg
 		inline-block
 		cursor-pointer
 		text-white;
