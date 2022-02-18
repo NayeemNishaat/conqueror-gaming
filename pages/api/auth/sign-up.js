@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 			.json({ message: "Sign Up Failed!", redirect: false });
 
 	const client = await getClient();
-	const db = client.db();
+	const db = client.db("cqg");
 	const existingUser = await db
 		.collection("users")
 		.findOne({ email: data.email });
