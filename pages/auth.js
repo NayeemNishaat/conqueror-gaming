@@ -1,6 +1,10 @@
 import AuthForm from "../components/form/AuthForm";
+import { useRouter } from "next/router";
 
 function Auth(props) {
+	const router = useRouter();
+	if (!props.type) router.replace("/");
+
 	return <AuthForm type={props.type}></AuthForm>;
 }
 
