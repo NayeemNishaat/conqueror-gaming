@@ -9,9 +9,17 @@ export const getServerSideProps = async (ctx) => {
 	res.setHeader("Cache-Control", `s-maxage=30, stale-while-revalidate`);
 	const { type } = ctx.query;
 
+	if (!type)
+		return {
+			redirect: {
+				destination: "/",
+				permanent: true
+			}
+		};
+
 	return {
 		props: {
-			type: type
+			type: type || null
 		}
 	};
 };

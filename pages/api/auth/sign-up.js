@@ -33,6 +33,7 @@ export default async function handler(req, res) {
 	// Chapter: Configuring Email
 	const smtpTransport = NodeMailer.createTransport({
 		service: "Gmail",
+		port: 465,
 		auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASSWORD }
 	});
 

@@ -223,7 +223,15 @@ function Header() {
 							{data && (
 								<li className="nav__list lnk">
 									<Link href="/profile">
-										<a className="nav__item">Profile</a>
+										<a
+											onClick={switchSideDrawerHandler.bind(
+												this,
+												true
+											)}
+											className="nav__item"
+										>
+											Profile
+										</a>
 									</Link>
 								</li>
 							)}
@@ -231,7 +239,13 @@ function Header() {
 							{data && (
 								<li className="nav__list lnk">
 									<button
-										onClick={signOutHandler}
+										onClick={() => {
+											signOutHandler();
+											switchSideDrawerHandler.bind(
+												this,
+												true
+											);
+										}}
 										className="nav__item"
 									>
 										Sign Out
