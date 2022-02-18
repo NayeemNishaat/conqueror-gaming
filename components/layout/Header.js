@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
 
 function Header() {
@@ -10,21 +10,39 @@ function Header() {
 	const getCardRef = useRef(null);
 	const currencyRef = useRef(null);
 
+	// Warning: If bind is used for calling a function then always we need to use bund for calling that function in future and also always pass all the parameters else it will receive "this" as the first parameter.
+	const switchSideDrawerHandler = useCallback(function (close) {
+		console.log(67);
+		// Note: Sometimes e.target becomes null!
+		// e.target.nextElementSibling.classList.toggle(
+		// 	"translate-x-full"
+		// );
+		document.querySelector("body").classList.toggle("overflow-hidden");
+		if (close) {
+			if (
+				document
+					.querySelector(".js__side-drawer")
+					.classList.contains("translate-x-full")
+			)
+				return 0;
+		}
+		document
+			.querySelector(".js__side-drawer")
+			.classList.toggle("translate-x-full");
+	}, []);
+
 	useEffect(() => {
 		if (screen.width > 800) return;
-
-		document.querySelectorAll("li a").forEach((el) =>
-			el.addEventListener("click", () => {
-				switchSideDrawerHandler();
-			})
-		);
 
 		function handleClickOutside(event) {
 			const performAction = (ref, setEl) => {
 				if (ref.current && !ref.current.contains(event.target)) {
-					ref.current.querySelector(".js__sub-menu").style.maxHeight =
-						"0px";
+					// ref.current.querySelector(".js__sub-menu").style.maxHeight =
+					// 	"0px";
 					setEl(null);
+					document.querySelectorAll(".js__sub-menu").forEach((el) => {
+						el.style.maxHeight = "0px";
+					});
 				}
 			};
 
@@ -32,11 +50,19 @@ function Header() {
 			performAction(currencyRef, setCurrCurrEl);
 		}
 
+		let sideDrawerClickListener;
+		document.querySelectorAll("ul li a").forEach((el) => {
+			sideDrawerClickListener = el.addEventListener("mousedown", () => {
+				switchSideDrawerHandler(false);
+			});
+		});
+
 		document.addEventListener("mousedown", handleClickOutside);
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("mousedown", sideDrawerClickListener);
 		};
-	}, []);
+	}, [switchSideDrawerHandler]);
 
 	const signOutHandler = () => {
 		signOut();
@@ -73,24 +99,15 @@ function Header() {
 		} else setCurrEl(null);
 	}
 
-	function switchSideDrawerHandler() {
-		// Note: Sometimes e.target becomes null!
-		// e.target.nextElementSibling.classList.toggle(
-		// 	"translate-x-full"
-		// );
-		document.querySelector("body").classList.toggle("overflow-hidden");
-
-		document
-			.querySelector(".js__side-drawer")
-			.classList.toggle("translate-x-full");
-	}
-
 	return (
 		<header className="bg-violet-800 z-50 sticky top-0">
 			<nav className="container">
 				<div className="flex justify-between items-center h-[13vh] px-4 md:px-0">
 					<Link href="/">
-						<a className="flex w-[5.2rem] md:w-24 lg:w-auto">
+						<a
+							onClick={switchSideDrawerHandler.bind(this, true)}
+							className="flex w-[5.2rem] md:w-24 lg:w-auto"
+						>
 							<Image
 								src="/images/common/logo.jpg"
 								width={120}
@@ -103,8 +120,8 @@ function Header() {
 						</a>
 					</Link>
 					<svg
+						onClick={switchSideDrawerHandler.bind(this, false)}
 						className="w-6 h-6 md:hidden fill-white"
-						onClick={switchSideDrawerHandler}
 					>
 						<use xlinkHref="/images/common/sprite.svg#menu"></use>
 					</svg>
