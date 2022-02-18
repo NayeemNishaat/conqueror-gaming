@@ -14,6 +14,11 @@ export default async function handler(req, res) {
 
 	const storedData = await db.collection("users").findOne({ email: email });
 
+	if (!storedData)
+		return res
+			.status(400)
+			.json({ message: "Verification failed! Please try again!" });
+
 	const verifyOtp = await verifyHash(data.otp, storedData.otp);
 
 	if (!verifyOtp) {

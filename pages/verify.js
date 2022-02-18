@@ -21,8 +21,12 @@ function Verify() {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+
+		setMessage("Loading...");
+
 		const userEmail = cookie[1];
 		const otp = otpRef.current.value;
+		console.log(userEmail, otp);
 
 		fetch("/api/verify", {
 			method: "POST",
