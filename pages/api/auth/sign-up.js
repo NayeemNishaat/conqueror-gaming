@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 			.json({ message: "Sign Up Failed!", redirect: false });
 
 	const client = await getClient();
-	const db = client.db("cqg");
+	const db = client.db();
 	const existingUser = await db
 		.collection("users")
 		.findOne({ email: data.email });
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
 	const hashedPassword = await createHash(data.password, 12);
 	const hashedOtp = await createHash(otp, 12);
 
-	if (!existingUser?.active) {
+	if (existingUser && !existingUser.active) {
 		await db.collection("users").updateOne(
 			{
 				email: email
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
 		client.close();
 		return res.status(200).json({
 			message:
-				"Please check your Email in order to complete the Sign Up!",
+				"Please check your Email in order to activate your account!",
 			redirect: "/verify"
 		});
 	}
