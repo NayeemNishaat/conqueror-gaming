@@ -12,7 +12,6 @@ function Header() {
 
 	// Warning: If bind is used for calling a function then always we need to use bund for calling that function in future and also always pass all the parameters else it will receive "this" as the first parameter.
 	const switchSideDrawerHandler = useCallback(function (close) {
-		console.log(67);
 		// Note: Sometimes e.target becomes null!
 		// e.target.nextElementSibling.classList.toggle(
 		// 	"translate-x-full"
@@ -51,7 +50,7 @@ function Header() {
 		}
 
 		let sideDrawerClickListener;
-		document.querySelectorAll("ul li a").forEach((el) => {
+		document.querySelectorAll(".js__side-drawer a").forEach((el) => {
 			sideDrawerClickListener = el.addEventListener("mousedown", () => {
 				switchSideDrawerHandler(false);
 			});
@@ -243,7 +242,13 @@ function Header() {
 							{!data && status !== "loading" && (
 								<li className="nav__list lnk">
 									<Link href="/auth?type=sign-in">
-										<a className="nav__item">
+										<a
+											onClick={switchSideDrawerHandler.bind(
+												this,
+												true
+											)}
+											className="nav__item"
+										>
 											{/* {status === "loading" ||
 									status === "authenticated"
 										? "Sign Out"
@@ -258,7 +263,15 @@ function Header() {
 							{!data && status !== "loading" && (
 								<li className="nav__list lnk">
 									<Link href="/auth?type=sign-up">
-										<a className="nav__item">Sign Up</a>
+										<a
+											onClick={switchSideDrawerHandler.bind(
+												this,
+												true
+											)}
+											className="nav__item"
+										>
+											Sign Up
+										</a>
 									</Link>
 								</li>
 							)}
