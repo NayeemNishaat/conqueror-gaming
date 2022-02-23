@@ -29,6 +29,8 @@ function AuthForm(props) {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
+		setResult("Trying to Sign You In...");
+
 		const postActions = (result, redirect = true) => {
 			setResult(result);
 

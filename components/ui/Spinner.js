@@ -9,8 +9,8 @@ function Spinner(props) {
 					<div className="spinner-circle">&#9679;</div>
 				</div>
 			</div>
-			<p className="text-3xl font-semibold text-green-500">
-				props.message
+			<p className="text-3xl font-semibold text-green-500 text-center p-5">
+				{props.message}
 			</p>
 		</div>
 	);

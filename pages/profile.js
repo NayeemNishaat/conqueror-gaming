@@ -13,7 +13,7 @@ function Profile() {
 
 	if (!session)
 		return (
-			<Spinner message="Please wait! If you are not authorized you will be redirected to homepage!" />
+			<Spinner message="Please wait while we authorize! If you are not authorized you will be redirected to homepage!" />
 		);
 
 	return (

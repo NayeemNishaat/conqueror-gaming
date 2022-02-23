@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function Header() {
 	const [currEl, setCurrEl] = useState(null);
 	const [currCurrEl, setCurrCurrEl] = useState(null);
+	const router = useRouter(null);
 	const { data, status } = useSession();
 	const getCardRef = useRef(null);
 	const currencyRef = useRef(null);
@@ -66,6 +68,7 @@ function Header() {
 
 	const signOutHandler = () => {
 		signOut();
+		router.replace("/");
 	};
 
 	function setSubMenuHeightHandler(currEl, setCurrEl, e) {
