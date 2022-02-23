@@ -12,6 +12,7 @@ function Header() {
 
 	// Warning: If bind is used for calling a function then always we need to use bund for calling that function in future and also always pass all the parameters else it will receive "this" as the first parameter.
 	const switchSideDrawerHandler = useCallback(function (close) {
+		if (screen.width > 800) return;
 		// Note: Sometimes e.target becomes null!
 		// e.target.nextElementSibling.classList.toggle(
 		// 	"translate-x-full"
