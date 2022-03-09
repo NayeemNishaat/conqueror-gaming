@@ -20,7 +20,7 @@ function ProductDetails(props) {
 		setPayMethod(e.target.value);
 	};
 
-	const btnClickHandler = function () {
+	const btnClickHandler = function (e) {
 		// context.updateProduct(props.product, payMethod);
 		// dispatch("setProduct", { product: props.product, payMethod });
 
@@ -31,6 +31,8 @@ function ProductDetails(props) {
 		// 	},
 		// 	body: JSON.stringify(props.product)
 		// });
+
+		e.preventDefault();
 
 		const uid = uidRef.current.value;
 		const email = emailRef.current.value;
@@ -179,7 +181,10 @@ function ProductDetails(props) {
 								</label>
 							</figure>
 						</div>
-						<button className="mt-10 w-full bg-[#44d62c] block py-2 px-3 rounded-sm hover:bg-[#71f85c] transition text-xl font-semibold cursor-pointer">
+						<button
+							type="submit"
+							className="mt-10 w-full bg-[#44d62c] block py-2 px-3 rounded-sm hover:bg-[#71f85c] transition text-xl font-semibold cursor-pointer"
+						>
 							Checkout
 						</button>
 					</form>
