@@ -1,11 +1,15 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
 import useStore from "../../../store/store";
+import { useEffect } from "react";
 // import { setProduct } from "../../../lib/store";
 
 function CurrencyDetailsContainer(props) {
 	const [_stat, dispatch] = useStore();
-	dispatch("setProduct", props.product);
+
+	useEffect(() => {
+		dispatch("setProduct", props.product);
+	}, [dispatch, props.product]);
 
 	return <ProductDetails product={props.product} />;
 }

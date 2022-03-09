@@ -1,12 +1,15 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
 import useStore from "../../../store/store";
+import { useEffect } from "react";
 // import { setProduct } from "../../../lib/store";
 
 function GiftCardDetailsContainer(props) {
 	const [_stat, dispatch] = useStore();
 
-	dispatch("setProduct", props.product);
+	useEffect(() => {
+		dispatch("setProduct", props.product);
+	}, []); // Important: Not adding dependencies because we only want to run it once.
 
 	return <ProductDetails product={props.product} />;
 }
