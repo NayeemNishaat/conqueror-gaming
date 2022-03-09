@@ -1,22 +1,27 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
-import { setProduct } from "../../../lib/store";
+import useStore from "../../../store/store";
+// import { setProduct } from "../../../lib/store";
 
-function giftCardDetailsContainer(props) {
+function GiftCardDetailsContainer(props) {
+	const [_stat, dispatch] = useStore();
+
+	dispatch("setProduct", props.product);
+
 	return <ProductDetails product={props.product} />;
 }
 
 export const getStaticProps = async (ctx) => {
 	const [product] = await getSpecificProduct("gift-card", ctx.params.pid[0]);
 
-	setProduct({
-		_id: product._id.toString(),
-		name: product.name,
-		amount: product.amount,
-		price: product.price,
-		image: product.image,
-		details: product.details
-	});
+	// setProduct({
+	// 	_id: product._id.toString(),
+	// 	name: product.name,
+	// 	amount: product.amount,
+	// 	price: product.price,
+	// 	image: product.image,
+	// 	details: product.details
+	// });
 
 	return {
 		props: {
@@ -48,4 +53,4 @@ export const getStaticPaths = async (ctx) => {
 	};
 };
 
-export default giftCardDetailsContainer;
+export default GiftCardDetailsContainer;

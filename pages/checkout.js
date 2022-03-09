@@ -5,7 +5,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/form/CheckoutForm";
 import { useRouter } from "next/router";
-import getProduct from "../lib/store";
+import useStore from "../store/store";
+// import getProduct from "../lib/store";
 
 const stripePromise = loadStripe(
 	"pk_test_51KP2GaB0T1ufhduWZxQFg7NmumKWDQ0Ld74n64aGmPaEqY9lD1MZPp2xnUpe0bsXtwLN3YFFCZkrF3JqMFzQOOG900iBQuIu17"
@@ -14,6 +15,7 @@ const stripePromise = loadStripe(
 export default function App(props) {
 	const [clientSecret, setClientSecret] = useState();
 	// const context = useContext(ProductContext);
+	const [state] = useStore(false);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -25,11 +27,11 @@ export default function App(props) {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify(props.product)
+			body: JSON.stringify(state)
 		})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret));
-	}, [router, props.product]);
+	}, [router, state]);
 
 	if (props.product.payMethod === "bkash")
 		return (
@@ -46,7 +48,7 @@ export default function App(props) {
 		<section className="App h-screen flex items-center justify-center">
 			{clientSecret && (
 				<Elements options={options} stripe={stripePromise}>
-					<CheckoutForm product={props.product} />
+					<CheckoutForm product={state} />
 				</Elements>
 			)}
 		</section>
@@ -55,19 +57,19 @@ export default function App(props) {
 
 export const getServerSideProps = async (ctx) => {
 	const { payMethod } = ctx.query;
-	const product = getProduct();
+	// const product = getProduct();
 
-	if (!product)
-		return {
-			redirect: {
-				destination: "/",
-				permanent: true
-			}
-		};
+	// if (!product)
+	// 	return {
+	// 		redirect: {
+	// 			destination: "/",
+	// 			permanent: true
+	// 		}
+	// 	};
 
 	return {
 		props: {
-			product: { ...product, payMethod }
+			product: { payMethod }
 		}
 	};
 };

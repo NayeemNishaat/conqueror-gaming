@@ -1,22 +1,26 @@
 import ProductDetails from "../../../components/product-details/ProductDetails";
 import { getSpecificProduct, getFields } from "../../../lib/db";
-import { setProduct } from "../../../lib/store";
+import useStore from "../../../store/store";
+// import { setProduct } from "../../../lib/store";
 
-function currencyDetailsContainer(props) {
+function CurrencyDetailsContainer(props) {
+	const [_stat, dispatch] = useStore();
+	dispatch("setProduct", props.product);
+
 	return <ProductDetails product={props.product} />;
 }
 
 export const getStaticProps = async (ctx) => {
 	const [product] = await getSpecificProduct("currency", ctx.params.pid[0]); // Note: Dynamic catch-all routes are always set and received as an array of dynamic routes!
 
-	setProduct({
-		_id: product._id.toString(),
-		name: product.name,
-		amount: product.amount,
-		price: product.price,
-		image: product.image,
-		details: product.details
-	});
+	// setProduct({
+	// 	_id: product._id.toString(),
+	// 	name: product.name,
+	// 	amount: product.amount,
+	// 	price: product.price,
+	// 	image: product.image,
+	// 	details: product.details
+	// });
 
 	// Remark: Fetch inside getStaticProps()
 	// fetch("http://localhost:3000/api/product", {
@@ -66,4 +70,4 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export default currencyDetailsContainer;
+export default CurrencyDetailsContainer;
