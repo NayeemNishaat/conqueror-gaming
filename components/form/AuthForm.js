@@ -29,8 +29,6 @@ function AuthForm(props) {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 
-		setResult("Trying to Sign You In...");
-
 		const postActions = (result, redirect = true) => {
 			setResult(result);
 
@@ -45,6 +43,8 @@ function AuthForm(props) {
 		};
 
 		if (props.type === "sign-up") {
+			setResult("Trying to Sign You Up...");
+
 			const response = await fetch("/api/auth/sign-up", {
 				method: "POST",
 				headers: {
@@ -64,6 +64,8 @@ function AuthForm(props) {
 		}
 
 		if (props.type === "sign-in") {
+			setResult("Trying to Sign You In...");
+
 			// Important: signIn should have the first param "credentials" in order to tell nextauth that the authorization is credentials based!
 			const res = await signIn("credentials", {
 				redirect: false, // Point: Auto redirect disabled so that we can check if any error occurs or not, cause this promise always resolved.

@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 	// const otp = Math.random(9).toFixed(10).toString().slice(2);
 
 	// Chapter: Sending Email
-	await mailer("otp", data.email);
+	const { otp, email } = await mailer("otp", data.email);
 	// const smtpTransport = NodeMailer.createTransport({
 	// 	service: "Gmail",
 	// 	auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASSWORD }
@@ -57,26 +57,37 @@ export default async function handler(req, res) {
 	const hashedOtp = await createHash(otp, 12);
 
 	if (existingUser && !existingUser.active) {
-		await db.collection("users").updateOne(
-			{
-				email: email
-			},
-			{
-				$set: {
-					name: data.name,
-					active: false,
-					password: hashedPassword,
-					otp: hashedOtp
+		try {
+			await db.collection("users").updateOne(
+				{
+					email: email
+				},
+				{
+					$set: {
+						name: data.name,
+						active: false,
+						password: hashedPassword,
+						otp: hashedOtp
+					}
 				}
-			}
-		);
+			);
 
-		client.close();
-		return res.status(200).json({
-			message:
-				"Please check your Email in order to activate your account!",
-			redirect: "/verify"
-		});
+			client.close();
+			return res.status(200).json({
+				message:
+					"Please check your Email in order to activate your account!",
+				redirect: "/verify"
+			});
+		} catch (err) {
+			client.close;
+			return res
+				.status(500)
+				.json({
+					message:
+						"Failed to create accound. Please try sometime later",
+					redirect: false
+				});
+		}
 	}
 
 	await db.collection("users").insertOne({
