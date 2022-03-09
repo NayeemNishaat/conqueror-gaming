@@ -2,7 +2,8 @@ import { initStore } from "./store";
 
 const configureProductStore = function () {
 	const actions = {
-		setProduct: (state, payload) => ({ ...state, ...payload })
+		setProduct: (state, payload) => ({ ...state, ...payload }),
+		setOrder: (state, payload) => ({ ...state, ...payload })
 	};
 
 	initStore(actions, {});

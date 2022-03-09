@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
+import useStore from "../../store/store";
 // import { setProduct } from "../../lib/store";
 // import { useContext } from "react";
 // import ProductContext from "../../store/ProductContext";
@@ -9,8 +10,10 @@ import { useRouter } from "next/router";
 function ProductDetails(props) {
 	const [payMethod, setPayMethod] = useState("bkash");
 	const router = useRouter();
+	const [_state, dispatch] = useStore();
+	const uidRef = useRef();
+	const emailRef = useRef();
 	// const context = useContext(ProductContext);
-	// const dispatch = useStore()[1];
 
 	const setPaymentHandler = function (e) {
 		setPayMethod(e.target.value);
@@ -27,6 +30,11 @@ function ProductDetails(props) {
 		// 	},
 		// 	body: JSON.stringify(props.product)
 		// });
+
+		const uid = uidRef.current.value;
+		const email = emailRef.current.value;
+
+		dispatch("setOrder", { uid, email });
 
 		router.push({
 			pathname: "/checkout",
@@ -68,6 +76,7 @@ function ProductDetails(props) {
 								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3 w-full"
 								id="uid"
 								type="text"
+								ref={uidRef}
 							/>
 						</div>
 						<div className="flex items-center gap-5">
@@ -81,6 +90,7 @@ function ProductDetails(props) {
 								className="bg-gray-200 outline-none rounded-sm ring-1 ring-cyan-400 py-1 px-3 w-full"
 								id="email"
 								type="email"
+								ref={emailRef}
 							/>
 						</div>
 						<div className="flex items-center gap-5">
