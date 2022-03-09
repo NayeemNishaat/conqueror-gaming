@@ -9,7 +9,7 @@ function CurrencyDetailsContainer(props) {
 
 	useEffect(() => {
 		dispatch("setProduct", props.product);
-	}, [dispatch, props.product]);
+	}, []);
 
 	return <ProductDetails product={props.product} />;
 }
