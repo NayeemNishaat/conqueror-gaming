@@ -66,8 +66,8 @@ function Header() {
 		};
 	}, [switchSideDrawerHandler]);
 
-	const signOutHandler = () => {
-		signOut();
+	const signOutHandler = async () => {
+		await signOut();
 		router.replace("/");
 	};
 
