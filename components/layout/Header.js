@@ -67,7 +67,7 @@ function Header() {
 	}, [switchSideDrawerHandler]);
 
 	const signOutHandler = async () => {
-		await signOut();
+		await signOut({ redirect: false });
 		router.replace("/");
 	};
 
